@@ -134,25 +134,31 @@ FILES_${PN}-dbg += "\
 
 # Save some space by not installing sources (mytest.py must remain)
 FILES_${PN}-src = "\
-	/usr/lib/enigma2/python/GlobalActions.py \
-	/usr/lib/enigma2/python/Navigation.py \
-	/usr/lib/enigma2/python/NavigationInstance.py \
-	/usr/lib/enigma2/python/RecordTimer.py \
-	/usr/lib/enigma2/python/ServiceReference.py \
-	/usr/lib/enigma2/python/SleepTimer.py \
-	/usr/lib/enigma2/python/e2reactor.py \
-	/usr/lib/enigma2/python/keyids.py \
-	/usr/lib/enigma2/python/keymapparser.py \
-	/usr/lib/enigma2/python/skin.py \
-	/usr/lib/enigma2/python/timer.py \
-	/usr/lib/enigma2/python/*/*.py \
-	/usr/lib/enigma2/python/*/*/*.py \
-	/usr/lib/enigma2/python/*/*/*/*.py \
+#	/usr/lib/enigma2/python/GlobalActions.py \
+#	/usr/lib/enigma2/python/Navigation.py \
+#	/usr/lib/enigma2/python/NavigationInstance.py \
+#	/usr/lib/enigma2/python/RecordTimer.py \
+#	/usr/lib/enigma2/python/ServiceReference.py \
+#	/usr/lib/enigma2/python/SleepTimer.py \
+#	/usr/lib/enigma2/python/e2reactor.py \
+#	/usr/lib/enigma2/python/keyids.py \
+#	/usr/lib/enigma2/python/keymapparser.py \
+#	/usr/lib/enigma2/python/skin.py \
+#	/usr/lib/enigma2/python/timer.py \
+#	/usr/lib/enigma2/python/*/*.py \
+#	/usr/lib/enigma2/python/*/*/*.py \
+#	/usr/lib/enigma2/python/*/*/*/*.py \
 	"
 RADIOMVI = "${@base_contains("MACHINE_FEATURES", "hdtv", "radio-hd.mvi" , "radio.mvi", d)}"
 
 SRC_URI += " \
 	file://${RADIOMVI} \
+	file://cn.png \
+	file://hk.png \
+	file://zh.po \
+	file://hk.po \
+	file://WenQuanYiMicroHeiMono.ttf \
+	file://nx111.patch \
 	"
 
 RCONFLICTS_${PN} = "dreambox-keymaps"
@@ -163,7 +169,20 @@ do_openpli_preinstall() {
 	install -d ${D}${sysconfdir}/enigma2
 }
 
+do_openpli_precompile(){
+	install -m 0644 ${WORKDIR}/cn.png ${S}/data/countries/cn.png
+	install -m 0644 ${WORKDIR}/hk.png ${S}/data/countries/hk.png
+	install -m 0644 ${WORKDIR}/zh.po ${S}/po/zh.po
+	install -m 0644 ${WORKDIR}/hk.po ${S}/po/hk.po
+	install -m 0644 ${WORKDIR}/WenQuanYiMicroHeiMono.ttf ${S}/data/fonts/WenQuanYiMicroHeiMono.ttf
+	rm -f ${S}/data/fonts/nmsbd.ttf
+	rm -f ${S}/data/fonts/ae_AlMateen.ttf
+	ln -s ${S}/data/fonts/WenQuanYiMicroHeiMono.ttf ${S}/data/fonts/nmsbd.ttf
+	ln -s ${S}/data/fonts/WenQuanYiMicroHeiMono.ttf ${S}/data/fonts/ae_AlMateen.ttf
+}
+
 addtask openpli_preinstall after do_compile before do_install
+addtask openpli_precompile after do_patch before do_configure
 
 do_install_append() {
 	install -d ${D}/usr/share/keymaps

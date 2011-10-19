@@ -3,7 +3,9 @@ DEPENDS = "dreambox-dvbincludes"
 MAINTAINER = "Felix Domke <tmbinc@elitdvb.net>"
 
 SRC_URI = "cvs://anoncvs@cvs.tuxbox.org/cvs/tuxbox;module=apps/dvb/libdvbsi++;method=ext;rsh=ssh"
-
+SRC_URI += " \
+	    file://SkipEmptyEPG.diff \
+	   "
 PR = "r0"
 PV = "0.0+cvs${SRCDATE}"
 

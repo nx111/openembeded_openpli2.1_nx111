@@ -1,0 +1,12 @@
+diff -Naur libdvbsi++.orig/apps/dvb/libdvbsi++/src/event_information_section.cpp libdvbsi++/apps/dvb/libdvbsi++/src/event_information_section.cpp
+--- libdvbsi++.orig/apps/dvb/libdvbsi++/src/event_information_section.cpp	2011-04-26 14:18:41.241663000 +0800
++++ libdvbsi++/apps/dvb/libdvbsi++/src/event_information_section.cpp	2011-04-26 14:38:05.333082000 +0800
+@@ -69,7 +69,7 @@
+ 	uint16_t loopLength=0;
+ 
+ 	while (bytesLeft > 11 && bytesLeft >= (loopLength = 12 + DVB_LENGTH(&buffer[pos+10]))) {
+-		events.push_back(new Event(&buffer[pos]));	
++		if (loopLength > 12) events.push_back(new Event(&buffer[pos]));	
+ 		bytesLeft -= loopLength;
+ 		pos += loopLength;
+ 	}

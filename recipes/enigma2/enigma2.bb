@@ -167,6 +167,10 @@ RREPLACES_${PN} = "dreambox-keymaps"
 do_openpli_preinstall() {
 	install -m 0644 ${WORKDIR}/${RADIOMVI} ${S}/data/radio.mvi
 	install -d ${D}${sysconfdir}/enigma2
+	rm -f ${S}/data/fonts/nmsbd.ttf
+	rm -f ${S}/data/fonts/ae_AlMateen.ttf
+	ln -s ${S}/data/fonts/WenQuanYiMicroHeiMono.ttf ${S}/data/fonts/nmsbd.ttf
+	ln -s ${S}/data/fonts/WenQuanYiMicroHeiMono.ttf ${S}/data/fonts/ae_AlMateen.ttf
 }
 
 do_openpli_precompile(){
@@ -175,10 +179,6 @@ do_openpli_precompile(){
 	install -m 0644 ${WORKDIR}/zh.po ${S}/po/zh.po
 	install -m 0644 ${WORKDIR}/hk.po ${S}/po/hk.po
 	install -m 0644 ${WORKDIR}/WenQuanYiMicroHeiMono.ttf ${S}/data/fonts/WenQuanYiMicroHeiMono.ttf
-	rm -f ${S}/data/fonts/nmsbd.ttf
-	rm -f ${S}/data/fonts/ae_AlMateen.ttf
-	ln -s ${S}/data/fonts/WenQuanYiMicroHeiMono.ttf ${S}/data/fonts/nmsbd.ttf
-	ln -s ${S}/data/fonts/WenQuanYiMicroHeiMono.ttf ${S}/data/fonts/ae_AlMateen.ttf
 }
 
 addtask openpli_preinstall after do_compile before do_install

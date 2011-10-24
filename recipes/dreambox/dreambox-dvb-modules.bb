@@ -32,7 +32,8 @@ PV_dm7020hd = "${KV}-20110928"
 KV_dm8000 = "${@base_contains('PREFERRED_VERSION_linux-dm8000', '2.6.18', '2.6.18-7.4-dm8000', '2.6.30-dm8000', d)}"
 PV_dm8000 = "${KV}-${@base_contains('PREFERRED_VERSION_linux-dm8000', '2.6.18', '20110902', '20090820', d)}"
 
-PV_dm800 = "${KV}-${@base_contains('PREFERRED_VERSION_linux-dm800', '2.6.18', '20110821-clone', '20090723', d)}"
+PV_dm800 = "${KV}-${@base_contains('PREFERRED_VERSION_linux-dm800', '2.6.18', '20110902-clone', '20090723', d)}"
+PV_dm800se = "${KV}-20110902-clone"
 
 RDEPENDS_${PN} = "kernel (${KV})"
 

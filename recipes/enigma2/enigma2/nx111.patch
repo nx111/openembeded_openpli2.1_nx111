@@ -1,6 +1,6 @@
 diff -Naur git.orig/data/countries/Makefile.am git/data/countries/Makefile.am
---- git.orig/data/countries/Makefile.am	2011-10-17 19:10:19.424073000 +0800
-+++ git/data/countries/Makefile.am	2011-10-17 19:40:09.178304000 +0800
+--- git.orig/data/countries/Makefile.am	2011-10-24 10:18:18.913790339 +0800
++++ git/data/countries/Makefile.am	2011-10-24 10:19:06.198024811 +0800
 @@ -32,4 +32,6 @@
  	tr.png \
  	ua.png \
@@ -10,18 +10,22 @@ diff -Naur git.orig/data/countries/Makefile.am git/data/countries/Makefile.am
 +	cn.png \
 +	hk.png
 diff -Naur git.orig/data/fonts/Makefile.am git/data/fonts/Makefile.am
---- git.orig/data/fonts/Makefile.am	2011-10-17 19:10:19.498038000 +0800
-+++ git/data/fonts/Makefile.am	2011-10-17 19:40:09.258445000 +0800
-@@ -5,4 +5,5 @@
+--- git.orig/data/fonts/Makefile.am	2011-10-24 10:18:18.941790479 +0800
++++ git/data/fonts/Makefile.am	2011-10-24 13:39:59.472429286 +0800
+@@ -1,8 +1,6 @@
+ installdir = $(datadir)/fonts
+ 
+ dist_install_DATA = \
+-	ae_AlMateen.ttf \
  	andale.ttf \
- 	lcd.ttf \
- 	md_khmurabi_10.ttf \
+-	lcd.ttf \
+-	md_khmurabi_10.ttf \
 -	nmsbd.ttf
-+	nmsbd.ttf \
-+	WenQuanYiMicroHeiMono.ttf
++	lcd.ttf 
++
 diff -Naur git.orig/lib/base/big5.h git/lib/base/big5.h
---- git.orig/lib/base/big5.h	1970-01-01 07:00:00.000000000 +0700
-+++ git/lib/base/big5.h	2011-10-17 19:40:10.246467000 +0800
+--- git.orig/lib/base/big5.h	1970-01-01 08:00:00.000000000 +0800
++++ git/lib/base/big5.h	2011-10-24 10:19:06.206024851 +0800
 @@ -0,0 +1,4189 @@
 +/*
 + * Copyright (C) 1999-2001 Free Software Foundation, Inc.
@@ -4213,8 +4217,8 @@ diff -Naur git.orig/lib/base/big5.h git/lib/base/big5.h
 +#endif
 +#endif
 diff -Naur git.orig/lib/base/encoding.cpp git/lib/base/encoding.cpp
---- git.orig/lib/base/encoding.cpp	2011-10-17 19:10:19.827415000 +0800
-+++ git/lib/base/encoding.cpp	2011-10-17 19:40:10.225017000 +0800
+--- git.orig/lib/base/encoding.cpp	2011-10-24 10:18:17.921785422 +0800
++++ git/lib/base/encoding.cpp	2011-10-24 10:19:06.206024851 +0800
 @@ -15,7 +15,17 @@
  	}
  	return c;
@@ -4340,8 +4344,8 @@ diff -Naur git.orig/lib/base/encoding.cpp git/lib/base/encoding.cpp
  				m_CountryCodeDefaultMapping[countrycode]=0;
  				countrycode[0]=toupper(countrycode[0]);
 diff -Naur git.orig/lib/base/encoding.cpp.orig git/lib/base/encoding.cpp.orig
---- git.orig/lib/base/encoding.cpp.orig	1970-01-01 07:00:00.000000000 +0700
-+++ git/lib/base/encoding.cpp.orig	2011-10-17 19:40:10.166796000 +0800
+--- git.orig/lib/base/encoding.cpp.orig	1970-01-01 08:00:00.000000000 +0800
++++ git/lib/base/encoding.cpp.orig	2011-10-24 10:19:06.206024851 +0800
 @@ -0,0 +1,88 @@
 +#include <cstdio>
 +#include <cstdlib>
@@ -4432,8 +4436,8 @@ diff -Naur git.orig/lib/base/encoding.cpp.orig git/lib/base/encoding.cpp.orig
 +	return 1;  // ISO8859-1 / Latin1
 +}
 diff -Naur git.orig/lib/base/encoding.h git/lib/base/encoding.h
---- git.orig/lib/base/encoding.h	2011-10-17 19:10:19.828304000 +0800
-+++ git/lib/base/encoding.h	2011-10-17 19:40:10.170195000 +0800
+--- git.orig/lib/base/encoding.h	2011-10-24 10:18:17.925785443 +0800
++++ git/lib/base/encoding.h	2011-10-24 10:19:06.206024851 +0800
 @@ -5,6 +5,12 @@
  #include <set>
  #include <map>
@@ -4448,8 +4452,8 @@ diff -Naur git.orig/lib/base/encoding.h git/lib/base/encoding.h
  {
  	std::map<std::string, int> m_CountryCodeDefaultMapping;
 diff -Naur git.orig/lib/base/estring.cpp git/lib/base/estring.cpp
---- git.orig/lib/base/estring.cpp	2011-10-17 19:10:19.831526000 +0800
-+++ git/lib/base/estring.cpp	2011-10-17 19:40:10.209943000 +0800
+--- git.orig/lib/base/estring.cpp	2011-10-24 10:18:17.921785422 +0800
++++ git/lib/base/estring.cpp	2011-10-24 10:19:06.206024851 +0800
 @@ -6,6 +6,8 @@
  #include <lib/base/encoding.h>
  #include <lib/base/estring.h>
@@ -4647,8 +4651,8 @@ diff -Naur git.orig/lib/base/estring.cpp git/lib/base/estring.cpp
  			if (table == 65) { // unicode
  				if (i+1 < len) {
 diff -Naur git.orig/lib/base/estring.h git/lib/base/estring.h
---- git.orig/lib/base/estring.h	2011-10-17 19:10:19.832507000 +0800
-+++ git/lib/base/estring.h	2011-10-17 19:40:10.232690000 +0800
+--- git.orig/lib/base/estring.h	2011-10-24 10:18:17.921785422 +0800
++++ git/lib/base/estring.h	2011-10-24 10:19:06.206024851 +0800
 @@ -12,6 +12,9 @@
  
  std::string getNum(int num, int base=10);
@@ -4660,8 +4664,8 @@ diff -Naur git.orig/lib/base/estring.h git/lib/base/estring.h
  std::string convertLatin1UTF8(const std::string &string);
  int isUTF8(const std::string &string);
 diff -Naur git.orig/lib/base/gb18030.h git/lib/base/gb18030.h
---- git.orig/lib/base/gb18030.h	1970-01-01 07:00:00.000000000 +0700
-+++ git/lib/base/gb18030.h	2011-10-17 19:40:10.185775000 +0800
+--- git.orig/lib/base/gb18030.h	1970-01-01 08:00:00.000000000 +0800
++++ git/lib/base/gb18030.h	2011-10-24 10:19:06.214024887 +0800
 @@ -0,0 +1,5268 @@
 +/*
 + * Copyright (C) 1999-2001 Free Software Foundation, Inc.
@@ -9932,8 +9936,8 @@ diff -Naur git.orig/lib/base/gb18030.h git/lib/base/gb18030.h
 + 
 +#endif 
 diff -Naur git.orig/lib/python/Components/language_cache.py git/lib/python/Components/language_cache.py
---- git.orig/lib/python/Components/language_cache.py	2011-10-17 19:10:20.269524000 +0800
-+++ git/lib/python/Components/language_cache.py	2011-10-17 19:40:11.674845000 +0800
+--- git.orig/lib/python/Components/language_cache.py	2011-10-24 10:18:18.605788811 +0800
++++ git/lib/python/Components/language_cache.py	2011-10-24 10:19:06.214024887 +0800
 @@ -4,6 +4,14 @@
  	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
  	"T2": "Language selection",
@@ -9950,8 +9954,8 @@ diff -Naur git.orig/lib/python/Components/language_cache.py git/lib/python/Compo
  	"T1": "Bitte benutzen Sie die Hoch/Runter-Tasten, um Ihre Sprache auszuwählen. Danach drücken Sie bitte OK.",
  	"T2": "Sprachauswahl",
 diff -Naur git.orig/lib/python/Components/Language.py git/lib/python/Components/Language.py
---- git.orig/lib/python/Components/Language.py	2011-10-17 19:10:20.268309000 +0800
-+++ git/lib/python/Components/Language.py	2011-10-17 19:40:11.657183000 +0800
+--- git.orig/lib/python/Components/Language.py	2011-10-24 10:18:18.541788498 +0800
++++ git/lib/python/Components/Language.py	2011-10-24 10:19:06.214024887 +0800
 @@ -13,6 +13,8 @@
  		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
  		# also, see "precalcLanguageList" below on how to re-create the language cache after you added a language
@@ -9962,8 +9966,8 @@ diff -Naur git.orig/lib/python/Components/Language.py git/lib/python/Components/
  		self.addLanguage("Arabic", "ar", "AE")
  		self.addLanguage("Català", "ca", "AD")
 diff -Naur git.orig/lib/python/Components/Sources/EventInfo.py git/lib/python/Components/Sources/EventInfo.py
---- git.orig/lib/python/Components/Sources/EventInfo.py	2011-10-17 19:10:20.226202000 +0800
-+++ git/lib/python/Components/Sources/EventInfo.py	2011-10-17 19:40:11.497911000 +0800
+--- git.orig/lib/python/Components/Sources/EventInfo.py	2011-10-24 10:18:18.537788477 +0800
++++ git/lib/python/Components/Sources/EventInfo.py	2011-10-24 10:19:06.214024887 +0800
 @@ -1,7 +1,8 @@
  from Components.PerServiceDisplay import PerServiceBase
  from Components.Element import cached
@@ -10029,8 +10033,8 @@ diff -Naur git.orig/lib/python/Components/Sources/EventInfo.py git/lib/python/Co
  			self.changed((self.CHANGED_CLEAR,))
  		else:
 diff -Naur git.orig/lib/python/Screens/InfoBarGenerics.py git/lib/python/Screens/InfoBarGenerics.py
---- git.orig/lib/python/Screens/InfoBarGenerics.py	2011-10-17 19:10:20.994267000 +0800
-+++ git/lib/python/Screens/InfoBarGenerics.py	2011-10-17 19:40:10.320695000 +0800
+--- git.orig/lib/python/Screens/InfoBarGenerics.py	2011-10-24 10:18:18.685789216 +0800
++++ git/lib/python/Screens/InfoBarGenerics.py	2011-10-24 10:19:06.214024887 +0800
 @@ -706,10 +706,10 @@
  		service = self.session.nav.getCurrentService()
  		info = service and service.info()
@@ -10045,8 +10049,8 @@ diff -Naur git.orig/lib/python/Screens/InfoBarGenerics.py git/lib/python/Screens
  		self.epglist = epglist
  
 diff -Naur git.orig/lib/python/Screens/InfoBarGenerics.py.orig git/lib/python/Screens/InfoBarGenerics.py.orig
---- git.orig/lib/python/Screens/InfoBarGenerics.py.orig	1970-01-01 07:00:00.000000000 +0700
-+++ git/lib/python/Screens/InfoBarGenerics.py.orig	2011-10-17 19:40:10.380364000 +0800
+--- git.orig/lib/python/Screens/InfoBarGenerics.py.orig	1970-01-01 08:00:00.000000000 +0800
++++ git/lib/python/Screens/InfoBarGenerics.py.orig	2011-10-24 10:19:06.218024909 +0800
 @@ -0,0 +1,2366 @@
 +from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector
 +
@@ -12415,8 +12419,8 @@ diff -Naur git.orig/lib/python/Screens/InfoBarGenerics.py.orig git/lib/python/Sc
 +			else:
 +				Notifications.RemovePopup(id = "ZapError")
 diff -Naur git.orig/lib/service/servicedvb.cpp git/lib/service/servicedvb.cpp
---- git.orig/lib/service/servicedvb.cpp	2011-10-17 19:10:21.098065000 +0800
-+++ git/lib/service/servicedvb.cpp	2011-10-17 19:40:11.756117000 +0800
+--- git.orig/lib/service/servicedvb.cpp	2011-10-24 10:18:18.749789526 +0800
++++ git/lib/service/servicedvb.cpp	2011-10-24 10:19:06.218024909 +0800
 @@ -1020,9 +1020,10 @@
  	if (m_event_next)
  		eDebug("next running: %s (%d seconds :)", m_event_next->m_event_name.c_str(), m_event_next->m_duration);
@@ -12430,8 +12434,8 @@ diff -Naur git.orig/lib/service/servicedvb.cpp git/lib/service/servicedvb.cpp
  	}
  	else
 diff -Naur git.orig/lib/service/servicedvb.cpp.orig git/lib/service/servicedvb.cpp.orig
---- git.orig/lib/service/servicedvb.cpp.orig	1970-01-01 07:00:00.000000000 +0700
-+++ git/lib/service/servicedvb.cpp.orig	2011-10-17 19:40:11.750183000 +0800
+--- git.orig/lib/service/servicedvb.cpp.orig	1970-01-01 08:00:00.000000000 +0800
++++ git/lib/service/servicedvb.cpp.orig	2011-10-24 10:19:06.222024934 +0800
 @@ -0,0 +1,3327 @@
 +#include <lib/base/eerror.h>
 +#include <lib/base/object.h>
@@ -15761,8 +15765,8 @@ diff -Naur git.orig/lib/service/servicedvb.cpp.orig git/lib/service/servicedvb.c
 +
 +eAutoInitPtr<eServiceFactoryDVB> init_eServiceFactoryDVB(eAutoInitNumbers::service+1, "eServiceFactoryDVB");
 diff -Naur git.orig/mytest.py git/mytest.py
---- git.orig/mytest.py	2011-10-17 19:10:21.126053000 +0800
-+++ git/mytest.py	2011-10-17 19:40:12.143831000 +0800
+--- git.orig/mytest.py	2011-10-24 10:18:17.821784930 +0800
++++ git/mytest.py	2011-10-24 10:19:06.222024934 +0800
 @@ -42,7 +42,7 @@
  config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
  config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
@@ -15773,8 +15777,8 @@ diff -Naur git.orig/mytest.py git/mytest.py
  config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
  config.misc.epgcache_filename = ConfigText(default = "/hdd/epg.dat")
 diff -Naur git.orig/mytest.py.orig git/mytest.py.orig
---- git.orig/mytest.py.orig	1970-01-01 07:00:00.000000000 +0700
-+++ git/mytest.py.orig	2011-10-17 19:40:11.844415000 +0800
+--- git.orig/mytest.py.orig	1970-01-01 08:00:00.000000000 +0800
++++ git/mytest.py.orig	2011-10-24 10:19:06.222024934 +0800
 @@ -0,0 +1,600 @@
 +import sys, os
 +if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
@@ -16377,8 +16381,8 @@ diff -Naur git.orig/mytest.py.orig git/mytest.py.orig
 +	enigma.quitMainloop(5)
 +	print '-'*60
 diff -Naur git.orig/po/Makefile.am git/po/Makefile.am
---- git.orig/po/Makefile.am	2011-10-17 19:10:21.246402000 +0800
-+++ git/po/Makefile.am	2011-10-17 19:40:12.128856000 +0800
+--- git.orig/po/Makefile.am	2011-10-24 10:18:17.809784871 +0800
++++ git/po/Makefile.am	2011-10-24 10:19:06.222024934 +0800
 @@ -1,6 +1,6 @@
  dist_noinst_SCRIPTS = xml2po.py
  
@@ -16388,8 +16392,8 @@ diff -Naur git.orig/po/Makefile.am git/po/Makefile.am
  LANGPO = $(LANGS:=.po)
  
 diff -Naur git.orig/po/Makefile.am.orig git/po/Makefile.am.orig
---- git.orig/po/Makefile.am.orig	1970-01-01 07:00:00.000000000 +0700
-+++ git/po/Makefile.am.orig	2011-10-17 19:40:12.108026000 +0800
+--- git.orig/po/Makefile.am.orig	1970-01-01 08:00:00.000000000 +0800
++++ git/po/Makefile.am.orig	2011-10-24 10:19:06.222024934 +0800
 @@ -0,0 +1,49 @@
 +dist_noinst_SCRIPTS = xml2po.py
 +

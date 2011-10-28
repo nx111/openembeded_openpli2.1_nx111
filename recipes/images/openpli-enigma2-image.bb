@@ -91,4 +91,4 @@ OPTIONAL_PACKAGES += " \
 			${ENIGMA2_OPTIONAL} \
 			"
 
-export IMAGE_BASENAME = "openpli-enigma2"
+export IMAGE_BASENAME = "OpenPLi"

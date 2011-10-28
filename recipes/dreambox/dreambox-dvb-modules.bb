@@ -33,7 +33,7 @@ KV_dm8000 = "${@base_contains('PREFERRED_VERSION_linux-dm8000', '2.6.18', '2.6.1
 PV_dm8000 = "${KV}-${@base_contains('PREFERRED_VERSION_linux-dm8000', '2.6.18', '20110902', '20090820', d)}"
 
 PV_dm800 = "${KV}-${@base_contains('PREFERRED_VERSION_linux-dm800', '2.6.18', '20110902-clone', '20090723', d)}"
-PV_dm800se = "${KV}-20110902-clone"
+#PV_dm800se = "${KV}-20110902-clone"
 
 RDEPENDS_${PN} = "kernel (${KV})"
 

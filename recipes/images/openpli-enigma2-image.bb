@@ -24,7 +24,7 @@ WIFI_DRIVERS = " \
 				"
 
 ENIGMA2_PLUGINS = " \
-				enigma2-plugin-pli-ppanel \
+				enigma2-plugin-extensions-ppanel \
 				enigma2-plugin-pli-softcamsetup \
 				enigma2-plugin-extensions-audiosync \
 				enigma2-plugin-systemplugins-softwaremanager \
@@ -57,6 +57,7 @@ ENIGMA2_OPTIONAL = " \
 				enigma2-skins \
 				enigma2-plugins \
 				enigma2-pliplugins \
+				task-openplugins \
 				enigma2-plugin-extensions-tuxcom \
 				enigma2-plugin-others-nano \
 				enigma2-plugin-extensions-tuxterm \

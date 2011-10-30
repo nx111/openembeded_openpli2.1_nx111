@@ -11,7 +11,7 @@ PR = "r0"
 
 PV_dm800 = "82-sim201"
 #PV_dm800se = "84-sim201"
-PV_dm800se = "82F-Ferrari"
+PV_dm800se = "82F-ferrari"
 
 SRC_URI = "http://sources.dreamboxupdate.com/download/7020/secondstage-${MACHINE}-${PV}.bin"
 

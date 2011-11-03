@@ -10,7 +10,9 @@ PKGV = "experimental-git${GITPKGV}"
 PR = "r5"
 
 SRC_URI="git://openpli.git.sourceforge.net/gitroot/openpli/plugins-enigma2;protocol=git"
-
+SRC_URI += " \
+	   file://enigma2-plugins-nx111.patch \
+	   "
 EXTRA_OECONF = " \
 	BUILD_SYS=${BUILD_SYS} \
 	HOST_SYS=${HOST_SYS} \

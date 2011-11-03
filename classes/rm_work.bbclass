@@ -17,11 +17,11 @@ do_rm_work () {
     cd ${WORKDIR}
     for dir in *
     do
-        if [ `basename ${dir}` = "temp" ]; then
-            echo "Not removing temp"
-        else 
+#        if [ `basename ${dir}` = "temp" ]; then
+#            echo "Not removing temp"
+#        else 
             echo "Removing $dir" ; rm -rf $dir
-        fi
+#        fi
     done
 }
 addtask rm_work after do_${RMWORK_ORIG_TASK}

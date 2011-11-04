@@ -1,6 +1,6 @@
 diff -Naur git.orig/data/countries/Makefile.am git/data/countries/Makefile.am
---- git.orig/data/countries/Makefile.am	2011-10-30 14:46:09.000000000 +0800
-+++ git/data/countries/Makefile.am	2011-11-03 21:15:13.518058916 +0800
+--- git.orig/data/countries/Makefile.am	2011-11-02 14:27:45.000000000 +0800
++++ git/data/countries/Makefile.am	2011-11-04 09:15:17.875686283 +0800
 @@ -32,4 +32,6 @@
  	tr.png \
  	ua.png \
@@ -10,8 +10,8 @@ diff -Naur git.orig/data/countries/Makefile.am git/data/countries/Makefile.am
 +	cn.png \
 +	hk.png
 diff -Naur git.orig/data/fonts/Makefile.am git/data/fonts/Makefile.am
---- git.orig/data/fonts/Makefile.am	2011-10-30 14:46:09.000000000 +0800
-+++ git/data/fonts/Makefile.am	2011-11-03 21:15:13.518058916 +0800
+--- git.orig/data/fonts/Makefile.am	2011-11-02 14:27:45.000000000 +0800
++++ git/data/fonts/Makefile.am	2011-11-04 09:15:17.875686283 +0800
 @@ -1,8 +1,6 @@
  installdir = $(datadir)/fonts
  
@@ -24,8 +24,8 @@ diff -Naur git.orig/data/fonts/Makefile.am git/data/fonts/Makefile.am
 +	lcd.ttf 
 +
 diff -Naur git.orig/lib/base/big5.h git/lib/base/big5.h
---- git.orig/lib/base/big5.h	1970-01-01 07:00:00.000000000 +0700
-+++ git/lib/base/big5.h	2011-11-03 21:15:13.530052894 +0800
+--- git.orig/lib/base/big5.h	1970-01-01 08:00:00.000000000 +0800
++++ git/lib/base/big5.h	2011-11-04 09:15:17.883686319 +0800
 @@ -0,0 +1,4189 @@
 +/*
 + * Copyright (C) 1999-2001 Free Software Foundation, Inc.
@@ -4217,8 +4217,8 @@ diff -Naur git.orig/lib/base/big5.h git/lib/base/big5.h
 +#endif
 +#endif
 diff -Naur git.orig/lib/base/encoding.cpp git/lib/base/encoding.cpp
---- git.orig/lib/base/encoding.cpp	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/base/encoding.cpp	2011-11-03 21:15:13.530052894 +0800
+--- git.orig/lib/base/encoding.cpp	2011-11-02 14:27:45.000000000 +0800
++++ git/lib/base/encoding.cpp	2011-11-04 13:57:54.907771657 +0800
 @@ -15,7 +15,17 @@
  	}
  	return c;
@@ -4238,7 +4238,7 @@ diff -Naur git.orig/lib/base/encoding.cpp git/lib/base/encoding.cpp
  eDVBTextEncodingHandler::eDVBTextEncodingHandler()
  {
  	std::string file = eEnv::resolve("${datadir}/enigma2/encoding.conf");
-@@ -25,15 +35,52 @@
+@@ -25,15 +35,60 @@
  		char *line = (char*) malloc(256);
  		size_t bufsize=256;
  		char countrycode[256];
@@ -4270,12 +4270,20 @@ diff -Naur git.orig/lib/base/encoding.cpp git/lib/base/encoding.cpp
 +					&& encoding == 2312)
 +				||((sscanf( strlower(line,lowerline), "%d %d gb%d", &tsid, &onid, &encoding ) == 3 )
 +					&& encoding == 2312)
++			   	||((sscanf( strlower(line,lowerline), "0x%x 0x%x cp%d", &tsid, &onid, &encoding ) == 3 )
++					&& encoding == 936)
++				||((sscanf( strlower(line,lowerline), "%d %d cp%d", &tsid, &onid, &encoding ) == 3 )
++					&& encoding == 936)
 +				 )
 +				m_TransponderDefaultMapping[(tsid<<16)|onid]=GB18030_ENCODING;
 +			else if ( ((sscanf( strlower(line,lowerline), "0x%x 0x%x big%d", &tsid, &onid, &encoding ) == 3 ) 
 +					&& encoding == 5)
 +				||((sscanf( strlower(line,lowerline), "%d %d big%d", &tsid, &onid, &encoding ) == 3 )
 +					&& encoding == 5)
++			   	||((sscanf( strlower(line,lowerline), "0x%x 0x%x cp%d", &tsid, &onid, &encoding ) == 3 )
++					&& encoding == 950)
++				||((sscanf( strlower(line,lowerline), "%d %d cp%d", &tsid, &onid, &encoding ) == 3 )
++					&& encoding == 950)
 +				 )
 +				m_TransponderDefaultMapping[(tsid<<16)|onid]=BIG5_ENCODING;
 +			else if ( ((sscanf( strlower(line,lowerline), "0x%x 0x%x %s", &tsid, &onid, codetemp ) == 3 ) 
@@ -4294,14 +4302,15 @@ diff -Naur git.orig/lib/base/encoding.cpp git/lib/base/encoding.cpp
  			{
  				m_CountryCodeDefaultMapping[countrycode]=encoding;
  				countrycode[0]=toupper(countrycode[0]);
-@@ -41,10 +88,45 @@
+@@ -41,10 +96,47 @@
  				countrycode[2]=toupper(countrycode[2]);
  				m_CountryCodeDefaultMapping[countrycode]=encoding;
  			}
 -			else if ( (sscanf( line, "0x%x 0x%x ISO%d", &tsid, &onid, &encoding ) == 3 && encoding == 6397 )
 -					||(sscanf( line, "%d %d ISO%d", &tsid, &onid, &encoding ) == 3 && encoding == 6397 ) )
 +			else if ( (sscanf( strlower(line,lowerline), "%s gb%d", countrycode, &encoding ) == 2 && encoding == 18030)
-+				  ||(sscanf( strlower(line,lowerline), "%s gb%d", countrycode, &encoding ) == 2 && encoding == 2312))
++				  ||(sscanf( strlower(line,lowerline), "%s gb%d", countrycode, &encoding ) == 2 && encoding == 2312)
++				  ||(sscanf( strlower(line,lowerline), "%s cp%d", countrycode, &encoding ) == 2 && encoding == 936))
 +			{
 +				m_CountryCodeDefaultMapping[countrycode]=GB18030_ENCODING;
 +				countrycode[0]=toupper(countrycode[0]);
@@ -4309,7 +4318,8 @@ diff -Naur git.orig/lib/base/encoding.cpp git/lib/base/encoding.cpp
 +				countrycode[2]=toupper(countrycode[2]);
 +				m_CountryCodeDefaultMapping[countrycode]=GB18030_ENCODING;
 +			}
-+			else if ( sscanf( strlower(line,lowerline), "%s big%d", countrycode, &encoding ) == 2 && encoding ==5)
++			else if ( (sscanf( strlower(line,lowerline), "%s big%d", countrycode, &encoding ) == 2 && encoding ==5)
++				||(sscanf( strlower(line,lowerline), "%s cp%d", countrycode, &encoding ) == 2 && encoding == 950))
 +			{
 +				m_CountryCodeDefaultMapping[countrycode]=BIG5_ENCODING;
 +				countrycode[0]=toupper(countrycode[0]);
@@ -4343,101 +4353,9 @@ diff -Naur git.orig/lib/base/encoding.cpp git/lib/base/encoding.cpp
  			{
  				m_CountryCodeDefaultMapping[countrycode]=0;
  				countrycode[0]=toupper(countrycode[0]);
-diff -Naur git.orig/lib/base/encoding.cpp.orig git/lib/base/encoding.cpp.orig
---- git.orig/lib/base/encoding.cpp.orig	1970-01-01 07:00:00.000000000 +0700
-+++ git/lib/base/encoding.cpp.orig	2011-11-03 21:15:13.530052894 +0800
-@@ -0,0 +1,88 @@
-+#include <cstdio>
-+#include <cstdlib>
-+#include <lib/base/encoding.h>
-+#include <lib/base/eerror.h>
-+#include <lib/base/eenv.h>
-+
-+eDVBTextEncodingHandler encodingHandler;  // the one and only instance
-+
-+inline char toupper(char c)
-+{
-+	switch (c)
-+	{
-+		case 'a' ... 'z':
-+			return c-32;
-+	}
-+	return c;
-+}
-+
-+eDVBTextEncodingHandler::eDVBTextEncodingHandler()
-+{
-+	std::string file = eEnv::resolve("${datadir}/enigma2/encoding.conf");
-+	FILE *f = fopen(file.c_str(), "rt");
-+	if (f)
-+	{
-+		char *line = (char*) malloc(256);
-+		size_t bufsize=256;
-+		char countrycode[256];
-+		while( getline(&line, &bufsize, f) != -1 )
-+		{
-+			if ( line[0] == '#' )
-+				continue;
-+			int tsid, onid, encoding;
-+			if ( (sscanf( line, "0x%x 0x%x ISO8859-%d", &tsid, &onid, &encoding ) == 3 )
-+					||(sscanf( line, "%d %d ISO8859-%d", &tsid, &onid, &encoding ) == 3 ) )
-+				m_TransponderDefaultMapping[(tsid<<16)|onid]=encoding;
-+			else if ( sscanf( line, "%s ISO8859-%d", countrycode, &encoding ) == 2 )
-+			{
-+				m_CountryCodeDefaultMapping[countrycode]=encoding;
-+				countrycode[0]=toupper(countrycode[0]);
-+				countrycode[1]=toupper(countrycode[1]);
-+				countrycode[2]=toupper(countrycode[2]);
-+				m_CountryCodeDefaultMapping[countrycode]=encoding;
-+			}
-+			else if ( (sscanf( line, "0x%x 0x%x ISO%d", &tsid, &onid, &encoding ) == 3 && encoding == 6397 )
-+					||(sscanf( line, "%d %d ISO%d", &tsid, &onid, &encoding ) == 3 && encoding == 6397 ) )
-+				m_TransponderDefaultMapping[(tsid<<16)|onid]=0;
-+			else if ( sscanf( line, "%s ISO%d", countrycode, &encoding ) == 2 && encoding == 6397 )
-+			{
-+				m_CountryCodeDefaultMapping[countrycode]=0;
-+				countrycode[0]=toupper(countrycode[0]);
-+				countrycode[1]=toupper(countrycode[1]);
-+				countrycode[2]=toupper(countrycode[2]);
-+				m_CountryCodeDefaultMapping[countrycode]=0;
-+			}
-+			else if ( (sscanf( line, "0x%x 0x%x", &tsid, &onid ) == 2 )
-+					||(sscanf( line, "%d %d", &tsid, &onid ) == 2 ) )
-+				m_TransponderUseTwoCharMapping.insert((tsid<<16)|onid);
-+			else
-+				eDebug("couldn't parse %s", line);
-+		}
-+		fclose(f);
-+		free(line);
-+	}
-+	else
-+		eDebug("[eDVBTextEncodingHandler] couldn't open %s !", file.c_str());
-+}
-+
-+void eDVBTextEncodingHandler::getTransponderDefaultMapping(int tsidonid, int &table)
-+{
-+	std::map<int, int>::iterator it =
-+		m_TransponderDefaultMapping.find(tsidonid);
-+	if ( it != m_TransponderDefaultMapping.end() )
-+		table = it->second;
-+}
-+
-+bool eDVBTextEncodingHandler::getTransponderUseTwoCharMapping(int tsidonid)
-+{
-+	return m_TransponderUseTwoCharMapping.find(tsidonid) != m_TransponderUseTwoCharMapping.end();
-+}
-+
-+int eDVBTextEncodingHandler::getCountryCodeDefaultMapping( const std::string &country_code )
-+{
-+	std::map<std::string, int>::iterator it =
-+		m_CountryCodeDefaultMapping.find(country_code);
-+	if ( it != m_CountryCodeDefaultMapping.end() )
-+		return it->second;
-+	return 1;  // ISO8859-1 / Latin1
-+}
 diff -Naur git.orig/lib/base/encoding.h git/lib/base/encoding.h
---- git.orig/lib/base/encoding.h	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/base/encoding.h	2011-11-03 21:15:13.530052894 +0800
+--- git.orig/lib/base/encoding.h	2011-11-02 14:27:45.000000000 +0800
++++ git/lib/base/encoding.h	2011-11-04 09:15:17.887686343 +0800
 @@ -5,6 +5,12 @@
  #include <set>
  #include <map>
@@ -4452,8 +4370,8 @@ diff -Naur git.orig/lib/base/encoding.h git/lib/base/encoding.h
  {
  	std::map<std::string, int> m_CountryCodeDefaultMapping;
 diff -Naur git.orig/lib/base/estring.cpp git/lib/base/estring.cpp
---- git.orig/lib/base/estring.cpp	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/base/estring.cpp	2011-11-03 21:15:13.530052894 +0800
+--- git.orig/lib/base/estring.cpp	2011-11-02 14:27:45.000000000 +0800
++++ git/lib/base/estring.cpp	2011-11-04 09:15:17.887686343 +0800
 @@ -6,6 +6,8 @@
  #include <lib/base/encoding.h>
  #include <lib/base/estring.h>
@@ -4651,8 +4569,8 @@ diff -Naur git.orig/lib/base/estring.cpp git/lib/base/estring.cpp
  			if (table == 65) { // unicode
  				if (i+1 < len) {
 diff -Naur git.orig/lib/base/estring.h git/lib/base/estring.h
---- git.orig/lib/base/estring.h	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/base/estring.h	2011-11-03 21:15:13.530052894 +0800
+--- git.orig/lib/base/estring.h	2011-11-02 14:27:45.000000000 +0800
++++ git/lib/base/estring.h	2011-11-04 09:15:17.895686379 +0800
 @@ -12,6 +12,9 @@
  
  std::string getNum(int num, int base=10);
@@ -4664,8 +4582,8 @@ diff -Naur git.orig/lib/base/estring.h git/lib/base/estring.h
  std::string convertLatin1UTF8(const std::string &string);
  int isUTF8(const std::string &string);
 diff -Naur git.orig/lib/base/gb18030.h git/lib/base/gb18030.h
---- git.orig/lib/base/gb18030.h	1970-01-01 07:00:00.000000000 +0700
-+++ git/lib/base/gb18030.h	2011-11-03 21:15:13.538048913 +0800
+--- git.orig/lib/base/gb18030.h	1970-01-01 08:00:00.000000000 +0800
++++ git/lib/base/gb18030.h	2011-11-04 09:15:17.911686461 +0800
 @@ -0,0 +1,5268 @@
 +/*
 + * Copyright (C) 1999-2001 Free Software Foundation, Inc.
@@ -9936,8 +9854,8 @@ diff -Naur git.orig/lib/base/gb18030.h git/lib/base/gb18030.h
 + 
 +#endif 
 diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
---- git.orig/lib/dvb/db.cpp	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/dvb/db.cpp	2011-11-03 21:15:13.538048913 +0800
+--- git.orig/lib/dvb/db.cpp	2011-11-02 14:27:45.000000000 +0800
++++ git/lib/dvb/db.cpp	2011-11-04 09:46:19.888919505 +0800
 @@ -6,6 +6,7 @@
  #include <lib/base/eenv.h>
  #include <lib/base/eerror.h>
@@ -9954,7 +9872,7 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  
  RESULT eBouquet::addService(const eServiceReference &ref, eServiceReference before)
  {
-@@ -285,6 +287,28 @@
+@@ -285,6 +287,33 @@
  		m_cache[id] = pid;
  }
  
@@ -9973,17 +9891,22 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
 +		return isHidden();
 +
 +	ePyObject pArgs = PyTuple_New(1);
-+	PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(ref.getPath().c_str()));
++	PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(ref.toString().c_str()));
 +	ePyObject pRet = PyObject_CallObject(m_queryFunc, pArgs);
 +	Py_DECREF(pArgs);
-+	return pRet || (m_flags & dxDontshow);
++	if (pRet && PyBool_Check(pRet) && pRet==Py_True){
++		Py_DECREF(pRet);
++		return true;
++	}
++	Py_DECREF(pRet);
++	return m_flags & dxDontshow;
 +
 +}
 +
  DEFINE_REF(eDVBDB);
  
  void eDVBDB::reloadServicelist()
-@@ -588,7 +612,7 @@
+@@ -588,7 +617,7 @@
  			fprintf(f, ",C:%04x", *ca);
  
  		if (i->second->m_flags)
@@ -9992,7 +9915,7 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  
  		fprintf(f, "\n");
  		services++;
-@@ -1612,7 +1636,7 @@
+@@ -1612,7 +1641,7 @@
  	while (m_cursor != m_db->m_services.end())
  	{
  		ePtr<eDVBService> service = m_cursor->second;
@@ -10001,7 +9924,7 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  			++m_cursor;
  		else
  		{
-@@ -1648,7 +1672,7 @@
+@@ -1648,7 +1677,7 @@
  		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it =
  			m_db->m_services.find(ref);
  
@@ -10010,7 +9933,7 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  
  		++m_cursor;
  
-@@ -1702,7 +1726,7 @@
+@@ -1702,7 +1731,7 @@
  	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_db->m_services.begin());
  		it != m_db->m_services.end(); ++it)
  	{
@@ -10019,7 +9942,7 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  		if (res)
  		{
  			unsigned int dvbnamespace = it->first.getDVBNamespace().get()&0xFFFF0000;
-@@ -1749,7 +1773,7 @@
+@@ -1749,7 +1778,7 @@
  	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_db->m_services.begin());
  		it != m_db->m_services.end(); ++it)
  	{
@@ -10029,8 +9952,8 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  		{
  			const char *provider_name = it->second->m_provider_name.length() ?
 diff -Naur git.orig/lib/dvb/db.h git/lib/dvb/db.h
---- git.orig/lib/dvb/db.h	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/dvb/db.h	2011-11-03 21:15:13.542046954 +0800
+--- git.orig/lib/dvb/db.h	2011-11-02 14:27:45.000000000 +0800
++++ git/lib/dvb/db.h	2011-11-04 09:15:17.911686461 +0800
 @@ -28,6 +28,7 @@
  	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_services;
  	
@@ -10040,8 +9963,8 @@ diff -Naur git.orig/lib/dvb/db.h git/lib/dvb/db.h
  	eDVBDB();
  	~eDVBDB();
 diff -Naur git.orig/lib/dvb/idvb.h git/lib/dvb/idvb.h
---- git.orig/lib/dvb/idvb.h	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/dvb/idvb.h	2011-11-03 21:51:00.038683121 +0800
+--- git.orig/lib/dvb/idvb.h	2011-11-02 14:27:45.000000000 +0800
++++ git/lib/dvb/idvb.h	2011-11-04 09:15:17.911686461 +0800
 @@ -262,13 +262,19 @@
  
  class eDVBChannelQuery;
@@ -10104,8 +10027,8 @@ diff -Naur git.orig/lib/dvb/idvb.h git/lib/dvb/idvb.h
  class iDVBDemux;
  class iDVBFrontendParameters;
 diff -Naur git.orig/lib/python/Components/language_cache.py git/lib/python/Components/language_cache.py
---- git.orig/lib/python/Components/language_cache.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Components/language_cache.py	2011-11-03 21:15:13.542046954 +0800
+--- git.orig/lib/python/Components/language_cache.py	2011-11-02 14:27:45.000000000 +0800
++++ git/lib/python/Components/language_cache.py	2011-11-04 09:15:17.911686461 +0800
 @@ -4,6 +4,14 @@
  	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
  	"T2": "Language selection",
@@ -10122,8 +10045,8 @@ diff -Naur git.orig/lib/python/Components/language_cache.py git/lib/python/Compo
  	"T1": "Bitte benutzen Sie die Hoch/Runter-Tasten, um Ihre Sprache auszuwählen. Danach drücken Sie bitte OK.",
  	"T2": "Sprachauswahl",
 diff -Naur git.orig/lib/python/Components/Language.py git/lib/python/Components/Language.py
---- git.orig/lib/python/Components/Language.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Components/Language.py	2011-11-03 21:15:13.542046954 +0800
+--- git.orig/lib/python/Components/Language.py	2011-11-02 14:27:45.000000000 +0800
++++ git/lib/python/Components/Language.py	2011-11-04 09:15:17.911686461 +0800
 @@ -13,6 +13,8 @@
  		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
  		# also, see "precalcLanguageList" below on how to re-create the language cache after you added a language
@@ -10134,29 +10057,27 @@ diff -Naur git.orig/lib/python/Components/Language.py git/lib/python/Components/
  		self.addLanguage("Arabic", "ar", "AE")
  		self.addLanguage("Català", "ca", "AD")
 diff -Naur git.orig/lib/python/Components/ParentalControl.py git/lib/python/Components/ParentalControl.py
---- git.orig/lib/python/Components/ParentalControl.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Components/ParentalControl.py	2011-11-03 21:15:13.542046954 +0800
-@@ -87,6 +87,19 @@
+--- git.orig/lib/python/Components/ParentalControl.py	2011-11-02 14:27:45.000000000 +0800
++++ git/lib/python/Components/ParentalControl.py	2011-11-04 09:32:29.652802585 +0800
+@@ -87,6 +87,17 @@
  	def setServiceLevel(self, service, type, level):
  		self.serviceLevel[service] = level
  
 +	def isServiceLocked(self, ref):
 +		if not config.ParentalControl.configured.value or not config.ParentalControl.servicepinactive.value:
-+			return True
-+		#Check if configuration has already been read or if the significant values have changed.
-+		#If true: read the configuration 
++			return False
 +		if self.configInitialized == False or self.storeServicePin != config.ParentalControl.storeservicepin.value or self.storeServicePinCancel != config.ParentalControl.storeservicepincancel.value:
 +			self.getConfigValues()
-+		service = ref.toCompareString()
++		service=ServiceReference(ref).toCompareString()
 +		if (config.ParentalControl.type.value == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.value == LIST_BLACKLIST and self.blacklist.has_key(service)):
-+			return False
-+		else:
 +			return True
++		else:
++			return False 
 +
  	def isServicePlayable(self, ref, callback):
  		if not config.ParentalControl.configured.value or not config.ParentalControl.servicepinactive.value:
  			return True
-@@ -304,7 +317,7 @@
+@@ -304,7 +315,7 @@
  	def save(self):
  		self.saveListToFile(LIST_BLACKLIST, self.blacklist)
  		self.saveListToFile(LIST_WHITELIST, self.whitelist)
@@ -10166,8 +10087,8 @@ diff -Naur git.orig/lib/python/Components/ParentalControl.py git/lib/python/Comp
  		self.blacklist = self.openListFromFile(LIST_BLACKLIST)
  		self.whitelist = self.openListFromFile(LIST_WHITELIST)
 diff -Naur git.orig/lib/python/Components/Sources/EventInfo.py git/lib/python/Components/Sources/EventInfo.py
---- git.orig/lib/python/Components/Sources/EventInfo.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Components/Sources/EventInfo.py	2011-11-03 21:15:13.546044978 +0800
+--- git.orig/lib/python/Components/Sources/EventInfo.py	2011-11-02 14:27:45.000000000 +0800
++++ git/lib/python/Components/Sources/EventInfo.py	2011-11-04 09:15:17.911686461 +0800
 @@ -1,7 +1,8 @@
  from Components.PerServiceDisplay import PerServiceBase
  from Components.Element import cached
@@ -10232,22 +10153,10 @@ diff -Naur git.orig/lib/python/Components/Sources/EventInfo.py git/lib/python/Co
  		if what == iPlayableService.evEnd:
  			self.changed((self.CHANGED_CLEAR,))
  		else:
-diff -Naur git.orig/lib/python/Makefile.am git/lib/python/Makefile.am
---- git.orig/lib/python/Makefile.am	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Makefile.am	2011-11-03 21:15:13.546044978 +0800
-@@ -36,7 +36,7 @@
- 
- enigma.py: enigma_python.cpp
- 
--CLEANFILES = enigma.py enigma_python.cpp
-+#CLEANFILES = enigma.py enigma_python.cpp
- 
- installdir = $(pkglibdir)/python
- 
 diff -Naur git.orig/lib/python/Screens/InfoBarGenerics.py git/lib/python/Screens/InfoBarGenerics.py
---- git.orig/lib/python/Screens/InfoBarGenerics.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Screens/InfoBarGenerics.py	2011-11-03 21:15:13.546044978 +0800
-@@ -742,10 +742,10 @@
+--- git.orig/lib/python/Screens/InfoBarGenerics.py	2011-11-02 14:27:45.000000000 +0800
++++ git/lib/python/Screens/InfoBarGenerics.py	2011-11-04 09:15:17.915686477 +0800
+@@ -728,10 +728,10 @@
  		service = self.session.nav.getCurrentService()
  		info = service and service.info()
  		ptr = info and info.getEvent(0)
@@ -10261,8 +10170,8 @@ diff -Naur git.orig/lib/python/Screens/InfoBarGenerics.py git/lib/python/Screens
  		self.epglist = epglist
  
 diff -Naur git.orig/lib/service/servicedvb.cpp git/lib/service/servicedvb.cpp
---- git.orig/lib/service/servicedvb.cpp	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/service/servicedvb.cpp	2011-11-03 21:15:13.546044978 +0800
+--- git.orig/lib/service/servicedvb.cpp	2011-11-02 14:27:46.000000000 +0800
++++ git/lib/service/servicedvb.cpp	2011-11-04 09:15:17.915686477 +0800
 @@ -1020,9 +1020,10 @@
  	if (m_event_next)
  		eDebug("next running: %s (%d seconds :)", m_event_next->m_event_name.c_str(), m_event_next->m_duration);
@@ -10276,8 +10185,8 @@ diff -Naur git.orig/lib/service/servicedvb.cpp git/lib/service/servicedvb.cpp
  	}
  	else
 diff -Naur git.orig/mytest.py git/mytest.py
---- git.orig/mytest.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/mytest.py	2011-11-03 22:25:11.576712581 +0800
+--- git.orig/mytest.py	2011-11-02 14:27:46.000000000 +0800
++++ git/mytest.py	2011-11-04 09:15:17.915686477 +0800
 @@ -42,7 +42,7 @@
  config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
  config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
@@ -10296,8 +10205,8 @@ diff -Naur git.orig/mytest.py git/mytest.py
  #	eDVBCIInterfaces.getInstance().setDescrambleRules(0 # Slot Number
  #		,(	["1:0:1:24:4:85:C00000:0:0:0:"], #service_list
 diff -Naur git.orig/po/Makefile.am git/po/Makefile.am
---- git.orig/po/Makefile.am	2011-10-30 14:46:09.000000000 +0800
-+++ git/po/Makefile.am	2011-11-03 21:15:13.546044978 +0800
+--- git.orig/po/Makefile.am	2011-11-02 14:27:46.000000000 +0800
++++ git/po/Makefile.am	2011-11-04 09:15:17.915686477 +0800
 @@ -1,6 +1,6 @@
  dist_noinst_SCRIPTS = xml2po.py
  

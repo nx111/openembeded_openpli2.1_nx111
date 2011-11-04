@@ -10046,17 +10046,16 @@ diff -Naur git.orig/lib/python/Components/Language.py git/lib/python/Components/
  		self.addLanguage("Català", "ca", "AD")
 diff -Naur git.orig/lib/python/Components/ParentalControl.py git/lib/python/Components/ParentalControl.py
 --- git.orig/lib/python/Components/ParentalControl.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Components/ParentalControl.py	2011-11-04 18:01:51.497294642 +0800
-@@ -87,6 +87,17 @@
++++ git/lib/python/Components/ParentalControl.py	2011-11-04 20:46:32.161346284 +0800
+@@ -87,6 +87,16 @@
  	def setServiceLevel(self, service, type, level):
  		self.serviceLevel[service] = level
  
-+	def isServiceLocked(self, ref):
++	def isServiceLocked(self, service):
 +		if not config.ParentalControl.configured.value or not config.ParentalControl.servicepinactive.value:
 +			return False
 +		if self.configInitialized == False or self.storeServicePin != config.ParentalControl.storeservicepin.value or self.storeServicePinCancel != config.ParentalControl.storeservicepincancel.value:
 +			self.getConfigValues()
-+		service=ServiceReference(ref).toCompareString()
 +		if (config.ParentalControl.type.value == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.value == LIST_BLACKLIST and self.blacklist.has_key(service)):
 +			return True
 +		else:
@@ -10065,7 +10064,7 @@ diff -Naur git.orig/lib/python/Components/ParentalControl.py git/lib/python/Comp
  	def isServicePlayable(self, ref, callback):
  		if not config.ParentalControl.configured.value or not config.ParentalControl.servicepinactive.value:
  			return True
-@@ -304,7 +315,7 @@
+@@ -304,7 +314,7 @@
  	def save(self):
  		self.saveListToFile(LIST_BLACKLIST, self.blacklist)
  		self.saveListToFile(LIST_WHITELIST, self.whitelist)
@@ -10141,6 +10140,46 @@ diff -Naur git.orig/lib/python/Components/Sources/EventInfo.py git/lib/python/Co
  		if what == iPlayableService.evEnd:
  			self.changed((self.CHANGED_CLEAR,))
  		else:
+diff -Naur git.orig/lib/python/Screens/ChannelSelection.py git/lib/python/Screens/ChannelSelection.py
+--- git.orig/lib/python/Screens/ChannelSelection.py	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/python/Screens/ChannelSelection.py	2011-11-04 23:04:39.504363132 +0800
+@@ -10,7 +10,7 @@
+ profile("ChannelSelection.py 1")
+ from EpgSelection import EPGSelection
+ from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv
+-from Components.config import config, configfile, ConfigSubsection, ConfigText
++from Components.config import config, configfile, ConfigSubsection, ConfigText, ConfigYesNo
+ from Tools.NumericalTextInput import NumericalTextInput
+ profile("ChannelSelection.py 2")
+ from Components.NimManager import nimmanager
+@@ -200,6 +200,12 @@
+ 						append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
+ 						append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
+ 
++		if config.ParentalControl.configured.value:
++			from Components.ParentalControl import parentalControl
++			if config.ParentalControl.servicepinactive.value == True:
++				append_when_current_valid(current, menu,(_("Disable parental control"), self.disableParentalProtection),level=0)
++			else:
++				append_when_current_valid(current, menu,(_("Enable parental control"), self.enableParentalProtection),level=0)
+ 		menu.append(ChoiceEntryComponent(text = (_("back"), self.cancelClick)))
+ 		self["menu"] = ChoiceList(menu)
+ 
+@@ -245,6 +251,14 @@
+ 			self.csel.addBouquet(bouquet, None)
+ 		self.close()
+ 
++	def enableParentalProtection(self):
++		config.ParentalControl.servicepinactive.value = True
++		self.close()
++
++	def disableParentalProtection(self):
++		config.ParentalControl.servicepinactive.value = False
++		self.close()
++
+ 	def addParentalProtection(self, service):
+ 		from Components.ParentalControl import parentalControl
+ 		parentalControl.protectService(service.toCompareString())
 diff -Naur git.orig/lib/python/Screens/InfoBarGenerics.py git/lib/python/Screens/InfoBarGenerics.py
 --- git.orig/lib/python/Screens/InfoBarGenerics.py	2011-10-30 14:46:09.000000000 +0800
 +++ git/lib/python/Screens/InfoBarGenerics.py	2011-11-04 18:01:51.501294664 +0800

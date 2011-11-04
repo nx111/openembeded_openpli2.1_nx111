@@ -2020,6 +2020,9 @@ msgstr "目錄(S)"
 msgid "Disable"
 msgstr "禁用"
 
+msgid "Disable parental control"
+msgstr "禁用家長控制"
+
 msgid "Disable Picture in Picture"
 msgstr "禁用畫中畫"
 

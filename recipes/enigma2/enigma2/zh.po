@@ -1464,6 +1464,9 @@ msgstr "目录(S)"
 msgid "Disable"
 msgstr "禁用"
 
+msgid "Disable parental control"
+msgstr "禁用家长控制"
+
 msgid "Disable Picture in Picture"
 msgstr "禁用画中画"
 

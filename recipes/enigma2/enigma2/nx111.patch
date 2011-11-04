@@ -1,6 +1,6 @@
 diff -Naur git.orig/data/countries/Makefile.am git/data/countries/Makefile.am
---- git.orig/data/countries/Makefile.am	2011-11-02 14:27:45.000000000 +0800
-+++ git/data/countries/Makefile.am	2011-11-04 09:15:17.875686283 +0800
+--- git.orig/data/countries/Makefile.am	2011-10-30 14:46:09.000000000 +0800
++++ git/data/countries/Makefile.am	2011-11-04 18:01:51.477294494 +0800
 @@ -32,4 +32,6 @@
  	tr.png \
  	ua.png \
@@ -10,8 +10,8 @@ diff -Naur git.orig/data/countries/Makefile.am git/data/countries/Makefile.am
 +	cn.png \
 +	hk.png
 diff -Naur git.orig/data/fonts/Makefile.am git/data/fonts/Makefile.am
---- git.orig/data/fonts/Makefile.am	2011-11-02 14:27:45.000000000 +0800
-+++ git/data/fonts/Makefile.am	2011-11-04 09:15:17.875686283 +0800
+--- git.orig/data/fonts/Makefile.am	2011-10-30 14:46:09.000000000 +0800
++++ git/data/fonts/Makefile.am	2011-11-04 18:01:51.477294494 +0800
 @@ -1,8 +1,6 @@
  installdir = $(datadir)/fonts
  
@@ -24,8 +24,8 @@ diff -Naur git.orig/data/fonts/Makefile.am git/data/fonts/Makefile.am
 +	lcd.ttf 
 +
 diff -Naur git.orig/lib/base/big5.h git/lib/base/big5.h
---- git.orig/lib/base/big5.h	1970-01-01 08:00:00.000000000 +0800
-+++ git/lib/base/big5.h	2011-11-04 09:15:17.883686319 +0800
+--- git.orig/lib/base/big5.h	1970-01-01 07:00:00.000000000 +0700
++++ git/lib/base/big5.h	2011-11-04 18:01:51.485294628 +0800
 @@ -0,0 +1,4189 @@
 +/*
 + * Copyright (C) 1999-2001 Free Software Foundation, Inc.
@@ -4217,8 +4217,8 @@ diff -Naur git.orig/lib/base/big5.h git/lib/base/big5.h
 +#endif
 +#endif
 diff -Naur git.orig/lib/base/encoding.cpp git/lib/base/encoding.cpp
---- git.orig/lib/base/encoding.cpp	2011-11-02 14:27:45.000000000 +0800
-+++ git/lib/base/encoding.cpp	2011-11-04 13:57:54.907771657 +0800
+--- git.orig/lib/base/encoding.cpp	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/base/encoding.cpp	2011-11-04 18:01:51.485294628 +0800
 @@ -15,7 +15,17 @@
  	}
  	return c;
@@ -4354,8 +4354,8 @@ diff -Naur git.orig/lib/base/encoding.cpp git/lib/base/encoding.cpp
  				m_CountryCodeDefaultMapping[countrycode]=0;
  				countrycode[0]=toupper(countrycode[0]);
 diff -Naur git.orig/lib/base/encoding.h git/lib/base/encoding.h
---- git.orig/lib/base/encoding.h	2011-11-02 14:27:45.000000000 +0800
-+++ git/lib/base/encoding.h	2011-11-04 09:15:17.887686343 +0800
+--- git.orig/lib/base/encoding.h	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/base/encoding.h	2011-11-04 18:01:51.485294628 +0800
 @@ -5,6 +5,12 @@
  #include <set>
  #include <map>
@@ -4370,8 +4370,8 @@ diff -Naur git.orig/lib/base/encoding.h git/lib/base/encoding.h
  {
  	std::map<std::string, int> m_CountryCodeDefaultMapping;
 diff -Naur git.orig/lib/base/estring.cpp git/lib/base/estring.cpp
---- git.orig/lib/base/estring.cpp	2011-11-02 14:27:45.000000000 +0800
-+++ git/lib/base/estring.cpp	2011-11-04 09:15:17.887686343 +0800
+--- git.orig/lib/base/estring.cpp	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/base/estring.cpp	2011-11-04 18:01:51.485294628 +0800
 @@ -6,6 +6,8 @@
  #include <lib/base/encoding.h>
  #include <lib/base/estring.h>
@@ -4569,8 +4569,8 @@ diff -Naur git.orig/lib/base/estring.cpp git/lib/base/estring.cpp
  			if (table == 65) { // unicode
  				if (i+1 < len) {
 diff -Naur git.orig/lib/base/estring.h git/lib/base/estring.h
---- git.orig/lib/base/estring.h	2011-11-02 14:27:45.000000000 +0800
-+++ git/lib/base/estring.h	2011-11-04 09:15:17.895686379 +0800
+--- git.orig/lib/base/estring.h	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/base/estring.h	2011-11-04 18:01:51.485294628 +0800
 @@ -12,6 +12,9 @@
  
  std::string getNum(int num, int base=10);
@@ -4582,8 +4582,8 @@ diff -Naur git.orig/lib/base/estring.h git/lib/base/estring.h
  std::string convertLatin1UTF8(const std::string &string);
  int isUTF8(const std::string &string);
 diff -Naur git.orig/lib/base/gb18030.h git/lib/base/gb18030.h
---- git.orig/lib/base/gb18030.h	1970-01-01 08:00:00.000000000 +0800
-+++ git/lib/base/gb18030.h	2011-11-04 09:15:17.911686461 +0800
+--- git.orig/lib/base/gb18030.h	1970-01-01 07:00:00.000000000 +0700
++++ git/lib/base/gb18030.h	2011-11-04 18:01:51.497294642 +0800
 @@ -0,0 +1,5268 @@
 +/*
 + * Copyright (C) 1999-2001 Free Software Foundation, Inc.
@@ -9854,8 +9854,8 @@ diff -Naur git.orig/lib/base/gb18030.h git/lib/base/gb18030.h
 + 
 +#endif 
 diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
---- git.orig/lib/dvb/db.cpp	2011-11-02 14:27:45.000000000 +0800
-+++ git/lib/dvb/db.cpp	2011-11-04 09:46:19.888919505 +0800
+--- git.orig/lib/dvb/db.cpp	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/dvb/db.cpp	2011-11-04 18:01:51.497294642 +0800
 @@ -6,6 +6,7 @@
  #include <lib/base/eenv.h>
  #include <lib/base/eerror.h>
@@ -9952,8 +9952,8 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  		{
  			const char *provider_name = it->second->m_provider_name.length() ?
 diff -Naur git.orig/lib/dvb/db.h git/lib/dvb/db.h
---- git.orig/lib/dvb/db.h	2011-11-02 14:27:45.000000000 +0800
-+++ git/lib/dvb/db.h	2011-11-04 09:15:17.911686461 +0800
+--- git.orig/lib/dvb/db.h	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/dvb/db.h	2011-11-04 18:01:51.497294642 +0800
 @@ -28,6 +28,7 @@
  	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_services;
  	
@@ -9963,9 +9963,9 @@ diff -Naur git.orig/lib/dvb/db.h git/lib/dvb/db.h
  	eDVBDB();
  	~eDVBDB();
 diff -Naur git.orig/lib/dvb/idvb.h git/lib/dvb/idvb.h
---- git.orig/lib/dvb/idvb.h	2011-11-02 14:27:45.000000000 +0800
-+++ git/lib/dvb/idvb.h	2011-11-04 09:15:17.911686461 +0800
-@@ -262,13 +262,19 @@
+--- git.orig/lib/dvb/idvb.h	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/dvb/idvb.h	2011-11-04 18:04:02.481935006 +0800
+@@ -262,12 +262,17 @@
  
  class eDVBChannelQuery;
  
@@ -9981,19 +9981,9 @@ diff -Naur git.orig/lib/dvb/idvb.h git/lib/dvb/idvb.h
 +#endif
 +	static ePyObject m_queryFunc;
  public:
-+#ifndef SWIG
  	enum cacheID
  	{
- 		cVPID, cAPID, cTPID, cPCRPID, cAC3PID,
-@@ -281,6 +287,7 @@
- 
- 	bool cacheEmpty();
- 
-+#endif
- 	eDVBService();
- 		/* m_service_name_sort is uppercase, with special chars removed, to increase sort performance. */
- 	std::string m_service_name, m_service_name_sort;
-@@ -298,15 +305,19 @@
+@@ -298,15 +303,17 @@
  		dxNewFound=64,
  	};
  
@@ -10007,15 +9997,13 @@ diff -Naur git.orig/lib/dvb/idvb.h git/lib/dvb/idvb.h
  
  	virtual ~eDVBService();
  	
-+#ifndef SWIG
  	eDVBService &operator=(const eDVBService &);
 -	
-+#endif	
 +
  	// iStaticServiceInformation
  	RESULT getName(const eServiceReference &ref, std::string &name);
  	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time);
-@@ -317,8 +328,9 @@
+@@ -317,8 +324,9 @@
  	int checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query);
  };
  
@@ -10027,8 +10015,8 @@ diff -Naur git.orig/lib/dvb/idvb.h git/lib/dvb/idvb.h
  class iDVBDemux;
  class iDVBFrontendParameters;
 diff -Naur git.orig/lib/python/Components/language_cache.py git/lib/python/Components/language_cache.py
---- git.orig/lib/python/Components/language_cache.py	2011-11-02 14:27:45.000000000 +0800
-+++ git/lib/python/Components/language_cache.py	2011-11-04 09:15:17.911686461 +0800
+--- git.orig/lib/python/Components/language_cache.py	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/python/Components/language_cache.py	2011-11-04 18:01:51.497294642 +0800
 @@ -4,6 +4,14 @@
  	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
  	"T2": "Language selection",
@@ -10045,8 +10033,8 @@ diff -Naur git.orig/lib/python/Components/language_cache.py git/lib/python/Compo
  	"T1": "Bitte benutzen Sie die Hoch/Runter-Tasten, um Ihre Sprache auszuwählen. Danach drücken Sie bitte OK.",
  	"T2": "Sprachauswahl",
 diff -Naur git.orig/lib/python/Components/Language.py git/lib/python/Components/Language.py
---- git.orig/lib/python/Components/Language.py	2011-11-02 14:27:45.000000000 +0800
-+++ git/lib/python/Components/Language.py	2011-11-04 09:15:17.911686461 +0800
+--- git.orig/lib/python/Components/Language.py	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/python/Components/Language.py	2011-11-04 18:01:51.497294642 +0800
 @@ -13,6 +13,8 @@
  		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
  		# also, see "precalcLanguageList" below on how to re-create the language cache after you added a language
@@ -10057,8 +10045,8 @@ diff -Naur git.orig/lib/python/Components/Language.py git/lib/python/Components/
  		self.addLanguage("Arabic", "ar", "AE")
  		self.addLanguage("Català", "ca", "AD")
 diff -Naur git.orig/lib/python/Components/ParentalControl.py git/lib/python/Components/ParentalControl.py
---- git.orig/lib/python/Components/ParentalControl.py	2011-11-02 14:27:45.000000000 +0800
-+++ git/lib/python/Components/ParentalControl.py	2011-11-04 09:32:29.652802585 +0800
+--- git.orig/lib/python/Components/ParentalControl.py	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/python/Components/ParentalControl.py	2011-11-04 18:01:51.497294642 +0800
 @@ -87,6 +87,17 @@
  	def setServiceLevel(self, service, type, level):
  		self.serviceLevel[service] = level
@@ -10087,8 +10075,8 @@ diff -Naur git.orig/lib/python/Components/ParentalControl.py git/lib/python/Comp
  		self.blacklist = self.openListFromFile(LIST_BLACKLIST)
  		self.whitelist = self.openListFromFile(LIST_WHITELIST)
 diff -Naur git.orig/lib/python/Components/Sources/EventInfo.py git/lib/python/Components/Sources/EventInfo.py
---- git.orig/lib/python/Components/Sources/EventInfo.py	2011-11-02 14:27:45.000000000 +0800
-+++ git/lib/python/Components/Sources/EventInfo.py	2011-11-04 09:15:17.911686461 +0800
+--- git.orig/lib/python/Components/Sources/EventInfo.py	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/python/Components/Sources/EventInfo.py	2011-11-04 18:01:51.497294642 +0800
 @@ -1,7 +1,8 @@
  from Components.PerServiceDisplay import PerServiceBase
  from Components.Element import cached
@@ -10154,9 +10142,9 @@ diff -Naur git.orig/lib/python/Components/Sources/EventInfo.py git/lib/python/Co
  			self.changed((self.CHANGED_CLEAR,))
  		else:
 diff -Naur git.orig/lib/python/Screens/InfoBarGenerics.py git/lib/python/Screens/InfoBarGenerics.py
---- git.orig/lib/python/Screens/InfoBarGenerics.py	2011-11-02 14:27:45.000000000 +0800
-+++ git/lib/python/Screens/InfoBarGenerics.py	2011-11-04 09:15:17.915686477 +0800
-@@ -728,10 +728,10 @@
+--- git.orig/lib/python/Screens/InfoBarGenerics.py	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/python/Screens/InfoBarGenerics.py	2011-11-04 18:01:51.501294664 +0800
+@@ -742,10 +742,10 @@
  		service = self.session.nav.getCurrentService()
  		info = service and service.info()
  		ptr = info and info.getEvent(0)
@@ -10170,8 +10158,8 @@ diff -Naur git.orig/lib/python/Screens/InfoBarGenerics.py git/lib/python/Screens
  		self.epglist = epglist
  
 diff -Naur git.orig/lib/service/servicedvb.cpp git/lib/service/servicedvb.cpp
---- git.orig/lib/service/servicedvb.cpp	2011-11-02 14:27:46.000000000 +0800
-+++ git/lib/service/servicedvb.cpp	2011-11-04 09:15:17.915686477 +0800
+--- git.orig/lib/service/servicedvb.cpp	2011-10-30 14:46:09.000000000 +0800
++++ git/lib/service/servicedvb.cpp	2011-11-04 18:01:51.501294664 +0800
 @@ -1020,9 +1020,10 @@
  	if (m_event_next)
  		eDebug("next running: %s (%d seconds :)", m_event_next->m_event_name.c_str(), m_event_next->m_duration);
@@ -10185,8 +10173,8 @@ diff -Naur git.orig/lib/service/servicedvb.cpp git/lib/service/servicedvb.cpp
  	}
  	else
 diff -Naur git.orig/mytest.py git/mytest.py
---- git.orig/mytest.py	2011-11-02 14:27:46.000000000 +0800
-+++ git/mytest.py	2011-11-04 09:15:17.915686477 +0800
+--- git.orig/mytest.py	2011-10-30 14:46:09.000000000 +0800
++++ git/mytest.py	2011-11-04 18:01:51.501294664 +0800
 @@ -42,7 +42,7 @@
  config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
  config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
@@ -10205,8 +10193,8 @@ diff -Naur git.orig/mytest.py git/mytest.py
  #	eDVBCIInterfaces.getInstance().setDescrambleRules(0 # Slot Number
  #		,(	["1:0:1:24:4:85:C00000:0:0:0:"], #service_list
 diff -Naur git.orig/po/Makefile.am git/po/Makefile.am
---- git.orig/po/Makefile.am	2011-11-02 14:27:46.000000000 +0800
-+++ git/po/Makefile.am	2011-11-04 09:15:17.915686477 +0800
+--- git.orig/po/Makefile.am	2011-10-30 14:46:09.000000000 +0800
++++ git/po/Makefile.am	2011-11-04 18:01:51.501294664 +0800
 @@ -1,6 +1,6 @@
  dist_noinst_SCRIPTS = xml2po.py
  

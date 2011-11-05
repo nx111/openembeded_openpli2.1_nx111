@@ -1,7 +1,19 @@
+diff -Naur git.orig/configure.ac git/configure.ac
+--- git.orig/configure.ac	2011-11-05 08:31:21.000000000 +0800
++++ git/configure.ac	2011-11-05 14:37:03.325457546 +0800
+@@ -130,7 +130,7 @@
+ 
+ AC_ARG_WITH(po,
+ 	AS_HELP_STRING([--with-po],[enable updating of po files]),
+-	[with_po="$withval"],[with_po="no"])
++	[with_po="$withval"],[with_po="yes"])
+ if test "$with_po" = "yes"; then
+ 	AC_PATH_PROG(MSGINIT, msginit)
+ 	AC_PATH_PROG(MSGMERGE, msgmerge)
 diff -Naur git.orig/data/countries/Makefile.am git/data/countries/Makefile.am
---- git.orig/data/countries/Makefile.am	2011-10-30 14:46:09.000000000 +0800
-+++ git/data/countries/Makefile.am	2011-11-04 18:01:51.477294494 +0800
-@@ -32,4 +32,6 @@
+--- git.orig/data/countries/Makefile.am	2011-11-05 08:31:21.000000000 +0800
++++ git/data/countries/Makefile.am	2011-11-05 08:51:31.477511247 +0800
+@@ -33,4 +33,6 @@
  	tr.png \
  	ua.png \
  	x-fy.png \
@@ -9,9 +21,49 @@ diff -Naur git.orig/data/countries/Makefile.am git/data/countries/Makefile.am
 +	yu.png \
 +	cn.png \
 +	hk.png
+diff -Naur git.orig/data/countries/Makefile.am.orig git/data/countries/Makefile.am.orig
+--- git.orig/data/countries/Makefile.am.orig	1970-01-01 07:00:00.000000000 +0700
++++ git/data/countries/Makefile.am.orig	2011-11-05 08:51:11.621413884 +0800
+@@ -0,0 +1,36 @@
++installdir = $(pkgdatadir)/countries
++
++dist_install_DATA = \
++	ad.png \
++	ae.png \
++	bg.png \
++	cz.png \
++	de.png \
++	dk.png \
++	en.png \
++	es.png \
++	ee.png \
++	fi.png \
++	fr.png \
++	gr.png \
++	hr.png \
++	hu.png \
++	is.png \
++	it.png \
++	lt.png \
++	lv.png \
++	missing.png \
++	nl.png \
++	no.png \
++	pl.png \
++	pt.png \
++	ro.png \
++	ru.png \
++	se.png \
++	si.png \
++	sk.png \
++	th.png \
++	tr.png \
++	ua.png \
++	x-fy.png \
++	yu.png
 diff -Naur git.orig/data/fonts/Makefile.am git/data/fonts/Makefile.am
---- git.orig/data/fonts/Makefile.am	2011-10-30 14:46:09.000000000 +0800
-+++ git/data/fonts/Makefile.am	2011-11-04 18:01:51.477294494 +0800
+--- git.orig/data/fonts/Makefile.am	2011-11-05 08:31:21.000000000 +0800
++++ git/data/fonts/Makefile.am	2011-11-05 08:51:31.477511247 +0800
 @@ -1,8 +1,6 @@
  installdir = $(datadir)/fonts
  
@@ -25,7 +77,7 @@ diff -Naur git.orig/data/fonts/Makefile.am git/data/fonts/Makefile.am
 +
 diff -Naur git.orig/lib/base/big5.h git/lib/base/big5.h
 --- git.orig/lib/base/big5.h	1970-01-01 07:00:00.000000000 +0700
-+++ git/lib/base/big5.h	2011-11-04 18:01:51.485294628 +0800
++++ git/lib/base/big5.h	2011-11-05 08:51:31.485511095 +0800
 @@ -0,0 +1,4189 @@
 +/*
 + * Copyright (C) 1999-2001 Free Software Foundation, Inc.
@@ -4217,8 +4269,8 @@ diff -Naur git.orig/lib/base/big5.h git/lib/base/big5.h
 +#endif
 +#endif
 diff -Naur git.orig/lib/base/encoding.cpp git/lib/base/encoding.cpp
---- git.orig/lib/base/encoding.cpp	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/base/encoding.cpp	2011-11-04 18:01:51.485294628 +0800
+--- git.orig/lib/base/encoding.cpp	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/base/encoding.cpp	2011-11-05 08:51:31.485511095 +0800
 @@ -15,7 +15,17 @@
  	}
  	return c;
@@ -4354,8 +4406,8 @@ diff -Naur git.orig/lib/base/encoding.cpp git/lib/base/encoding.cpp
  				m_CountryCodeDefaultMapping[countrycode]=0;
  				countrycode[0]=toupper(countrycode[0]);
 diff -Naur git.orig/lib/base/encoding.h git/lib/base/encoding.h
---- git.orig/lib/base/encoding.h	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/base/encoding.h	2011-11-04 18:01:51.485294628 +0800
+--- git.orig/lib/base/encoding.h	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/base/encoding.h	2011-11-05 08:51:31.485511095 +0800
 @@ -5,6 +5,12 @@
  #include <set>
  #include <map>
@@ -4370,8 +4422,8 @@ diff -Naur git.orig/lib/base/encoding.h git/lib/base/encoding.h
  {
  	std::map<std::string, int> m_CountryCodeDefaultMapping;
 diff -Naur git.orig/lib/base/estring.cpp git/lib/base/estring.cpp
---- git.orig/lib/base/estring.cpp	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/base/estring.cpp	2011-11-04 18:01:51.485294628 +0800
+--- git.orig/lib/base/estring.cpp	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/base/estring.cpp	2011-11-05 08:51:31.485511095 +0800
 @@ -6,6 +6,8 @@
  #include <lib/base/encoding.h>
  #include <lib/base/estring.h>
@@ -4569,8 +4621,8 @@ diff -Naur git.orig/lib/base/estring.cpp git/lib/base/estring.cpp
  			if (table == 65) { // unicode
  				if (i+1 < len) {
 diff -Naur git.orig/lib/base/estring.h git/lib/base/estring.h
---- git.orig/lib/base/estring.h	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/base/estring.h	2011-11-04 18:01:51.485294628 +0800
+--- git.orig/lib/base/estring.h	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/base/estring.h	2011-11-05 08:51:31.485511095 +0800
 @@ -12,6 +12,9 @@
  
  std::string getNum(int num, int base=10);
@@ -4583,7 +4635,7 @@ diff -Naur git.orig/lib/base/estring.h git/lib/base/estring.h
  int isUTF8(const std::string &string);
 diff -Naur git.orig/lib/base/gb18030.h git/lib/base/gb18030.h
 --- git.orig/lib/base/gb18030.h	1970-01-01 07:00:00.000000000 +0700
-+++ git/lib/base/gb18030.h	2011-11-04 18:01:51.497294642 +0800
++++ git/lib/base/gb18030.h	2011-11-05 08:51:31.493510945 +0800
 @@ -0,0 +1,5268 @@
 +/*
 + * Copyright (C) 1999-2001 Free Software Foundation, Inc.
@@ -9854,17 +9906,9 @@ diff -Naur git.orig/lib/base/gb18030.h git/lib/base/gb18030.h
 + 
 +#endif 
 diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
---- git.orig/lib/dvb/db.cpp	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/dvb/db.cpp	2011-11-04 18:01:51.497294642 +0800
-@@ -6,6 +6,7 @@
- #include <lib/base/eenv.h>
- #include <lib/base/eerror.h>
- #include <lib/base/estring.h>
-+#include <lib/base/nconfig.h>
- #include <xmlccwrap/xmlccwrap.h>
- #include <dvbsi++/service_description_section.h>
- #include <dvbsi++/descriptor_tag.h>
-@@ -13,6 +14,7 @@
+--- git.orig/lib/dvb/db.cpp	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/dvb/db.cpp	2011-11-05 08:51:31.497510931 +0800
+@@ -13,6 +13,7 @@
  #include <dvbsi++/satellite_delivery_system_descriptor.h>
  
  DEFINE_REF(eDVBService);
@@ -9872,7 +9916,7 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  
  RESULT eBouquet::addService(const eServiceReference &ref, eServiceReference before)
  {
-@@ -285,6 +287,33 @@
+@@ -285,6 +286,33 @@
  		m_cache[id] = pid;
  }
  
@@ -9906,16 +9950,7 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  DEFINE_REF(eDVBDB);
  
  void eDVBDB::reloadServicelist()
-@@ -588,7 +617,7 @@
- 			fprintf(f, ",C:%04x", *ca);
- 
- 		if (i->second->m_flags)
--			fprintf(f, ",f:%x", i->second->m_flags);
-+			fprintf(f, ",f:%x", i->second->m_flags & 0x00FF);
- 
- 		fprintf(f, "\n");
- 		services++;
-@@ -1612,7 +1641,7 @@
+@@ -1612,7 +1640,7 @@
  	while (m_cursor != m_db->m_services.end())
  	{
  		ePtr<eDVBService> service = m_cursor->second;
@@ -9924,7 +9959,7 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  			++m_cursor;
  		else
  		{
-@@ -1648,7 +1677,7 @@
+@@ -1648,7 +1676,7 @@
  		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it =
  			m_db->m_services.find(ref);
  
@@ -9933,7 +9968,7 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  
  		++m_cursor;
  
-@@ -1702,7 +1731,7 @@
+@@ -1702,7 +1730,7 @@
  	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_db->m_services.begin());
  		it != m_db->m_services.end(); ++it)
  	{
@@ -9942,7 +9977,7 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  		if (res)
  		{
  			unsigned int dvbnamespace = it->first.getDVBNamespace().get()&0xFFFF0000;
-@@ -1749,7 +1778,7 @@
+@@ -1749,7 +1777,7 @@
  	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_db->m_services.begin());
  		it != m_db->m_services.end(); ++it)
  	{
@@ -9952,8 +9987,8 @@ diff -Naur git.orig/lib/dvb/db.cpp git/lib/dvb/db.cpp
  		{
  			const char *provider_name = it->second->m_provider_name.length() ?
 diff -Naur git.orig/lib/dvb/db.h git/lib/dvb/db.h
---- git.orig/lib/dvb/db.h	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/dvb/db.h	2011-11-04 18:01:51.497294642 +0800
+--- git.orig/lib/dvb/db.h	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/dvb/db.h	2011-11-05 08:51:31.497510931 +0800
 @@ -28,6 +28,7 @@
  	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_services;
  	
@@ -9963,8 +9998,8 @@ diff -Naur git.orig/lib/dvb/db.h git/lib/dvb/db.h
  	eDVBDB();
  	~eDVBDB();
 diff -Naur git.orig/lib/dvb/idvb.h git/lib/dvb/idvb.h
---- git.orig/lib/dvb/idvb.h	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/dvb/idvb.h	2011-11-04 18:04:02.481935006 +0800
+--- git.orig/lib/dvb/idvb.h	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/dvb/idvb.h	2011-11-05 08:51:31.497510931 +0800
 @@ -262,12 +262,17 @@
  
  class eDVBChannelQuery;
@@ -10015,8 +10050,8 @@ diff -Naur git.orig/lib/dvb/idvb.h git/lib/dvb/idvb.h
  class iDVBDemux;
  class iDVBFrontendParameters;
 diff -Naur git.orig/lib/python/Components/language_cache.py git/lib/python/Components/language_cache.py
---- git.orig/lib/python/Components/language_cache.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Components/language_cache.py	2011-11-04 18:01:51.497294642 +0800
+--- git.orig/lib/python/Components/language_cache.py	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/python/Components/language_cache.py	2011-11-05 08:51:31.497510931 +0800
 @@ -4,6 +4,14 @@
  	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
  	"T2": "Language selection",
@@ -10033,8 +10068,8 @@ diff -Naur git.orig/lib/python/Components/language_cache.py git/lib/python/Compo
  	"T1": "Bitte benutzen Sie die Hoch/Runter-Tasten, um Ihre Sprache auszuwählen. Danach drücken Sie bitte OK.",
  	"T2": "Sprachauswahl",
 diff -Naur git.orig/lib/python/Components/Language.py git/lib/python/Components/Language.py
---- git.orig/lib/python/Components/Language.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Components/Language.py	2011-11-04 18:01:51.497294642 +0800
+--- git.orig/lib/python/Components/Language.py	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/python/Components/Language.py	2011-11-05 08:54:47.118467371 +0800
 @@ -13,6 +13,8 @@
  		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
  		# also, see "precalcLanguageList" below on how to re-create the language cache after you added a language
@@ -10043,10 +10078,10 @@ diff -Naur git.orig/lib/python/Components/Language.py git/lib/python/Components/
 +		self.addLanguage("Chinese", "hk", "HK")
  		self.addLanguage("Deutsch", "de", "DE")
  		self.addLanguage("Arabic", "ar", "AE")
- 		self.addLanguage("Català", "ca", "AD")
+ 		self.addLanguage("Български", "bg", "BU")
 diff -Naur git.orig/lib/python/Components/ParentalControl.py git/lib/python/Components/ParentalControl.py
---- git.orig/lib/python/Components/ParentalControl.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Components/ParentalControl.py	2011-11-04 20:46:32.161346284 +0800
+--- git.orig/lib/python/Components/ParentalControl.py	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/python/Components/ParentalControl.py	2011-11-05 08:51:31.497510931 +0800
 @@ -87,6 +87,16 @@
  	def setServiceLevel(self, service, type, level):
  		self.serviceLevel[service] = level
@@ -10074,8 +10109,8 @@ diff -Naur git.orig/lib/python/Components/ParentalControl.py git/lib/python/Comp
  		self.blacklist = self.openListFromFile(LIST_BLACKLIST)
  		self.whitelist = self.openListFromFile(LIST_WHITELIST)
 diff -Naur git.orig/lib/python/Components/Sources/EventInfo.py git/lib/python/Components/Sources/EventInfo.py
---- git.orig/lib/python/Components/Sources/EventInfo.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Components/Sources/EventInfo.py	2011-11-04 18:01:51.497294642 +0800
+--- git.orig/lib/python/Components/Sources/EventInfo.py	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/python/Components/Sources/EventInfo.py	2011-11-05 08:51:31.497510931 +0800
 @@ -1,7 +1,8 @@
  from Components.PerServiceDisplay import PerServiceBase
  from Components.Element import cached
@@ -10141,8 +10176,8 @@ diff -Naur git.orig/lib/python/Components/Sources/EventInfo.py git/lib/python/Co
  			self.changed((self.CHANGED_CLEAR,))
  		else:
 diff -Naur git.orig/lib/python/Screens/ChannelSelection.py git/lib/python/Screens/ChannelSelection.py
---- git.orig/lib/python/Screens/ChannelSelection.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Screens/ChannelSelection.py	2011-11-04 23:04:39.504363132 +0800
+--- git.orig/lib/python/Screens/ChannelSelection.py	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/python/Screens/ChannelSelection.py	2011-11-05 08:51:31.497510931 +0800
 @@ -10,7 +10,7 @@
  profile("ChannelSelection.py 1")
  from EpgSelection import EPGSelection
@@ -10181,9 +10216,9 @@ diff -Naur git.orig/lib/python/Screens/ChannelSelection.py git/lib/python/Screen
  		from Components.ParentalControl import parentalControl
  		parentalControl.protectService(service.toCompareString())
 diff -Naur git.orig/lib/python/Screens/InfoBarGenerics.py git/lib/python/Screens/InfoBarGenerics.py
---- git.orig/lib/python/Screens/InfoBarGenerics.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/python/Screens/InfoBarGenerics.py	2011-11-04 18:01:51.501294664 +0800
-@@ -742,10 +742,10 @@
+--- git.orig/lib/python/Screens/InfoBarGenerics.py	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/python/Screens/InfoBarGenerics.py	2011-11-05 08:51:31.501511027 +0800
+@@ -728,10 +728,10 @@
  		service = self.session.nav.getCurrentService()
  		info = service and service.info()
  		ptr = info and info.getEvent(0)
@@ -10197,8 +10232,8 @@ diff -Naur git.orig/lib/python/Screens/InfoBarGenerics.py git/lib/python/Screens
  		self.epglist = epglist
  
 diff -Naur git.orig/lib/service/servicedvb.cpp git/lib/service/servicedvb.cpp
---- git.orig/lib/service/servicedvb.cpp	2011-10-30 14:46:09.000000000 +0800
-+++ git/lib/service/servicedvb.cpp	2011-11-04 18:01:51.501294664 +0800
+--- git.orig/lib/service/servicedvb.cpp	2011-11-05 08:31:21.000000000 +0800
++++ git/lib/service/servicedvb.cpp	2011-11-05 08:51:31.501511027 +0800
 @@ -1020,9 +1020,10 @@
  	if (m_event_next)
  		eDebug("next running: %s (%d seconds :)", m_event_next->m_event_name.c_str(), m_event_next->m_duration);
@@ -10212,8 +10247,8 @@ diff -Naur git.orig/lib/service/servicedvb.cpp git/lib/service/servicedvb.cpp
  	}
  	else
 diff -Naur git.orig/mytest.py git/mytest.py
---- git.orig/mytest.py	2011-10-30 14:46:09.000000000 +0800
-+++ git/mytest.py	2011-11-04 18:01:51.501294664 +0800
+--- git.orig/mytest.py	2011-11-05 08:31:21.000000000 +0800
++++ git/mytest.py	2011-11-05 08:51:31.501511027 +0800
 @@ -42,7 +42,7 @@
  config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
  config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
@@ -10232,13 +10267,30 @@ diff -Naur git.orig/mytest.py git/mytest.py
  #	eDVBCIInterfaces.getInstance().setDescrambleRules(0 # Slot Number
  #		,(	["1:0:1:24:4:85:C00000:0:0:0:"], #service_list
 diff -Naur git.orig/po/Makefile.am git/po/Makefile.am
---- git.orig/po/Makefile.am	2011-10-30 14:46:09.000000000 +0800
-+++ git/po/Makefile.am	2011-11-04 18:01:51.501294664 +0800
+--- git.orig/po/Makefile.am	2011-11-05 08:31:21.000000000 +0800
++++ git/po/Makefile.am	2011-11-05 14:33:04.776291352 +0800
 @@ -1,6 +1,6 @@
  dist_noinst_SCRIPTS = xml2po.py
  
--LANGS = ar ca cs da de el en es et fi fr fy hr hu is it lt lv nl no pl pt ru sv sk sl sr th tr uk
-+LANGS = ar ca cs da de el en es et fi fr fy hr hu is it lt lv nl no pl pt ru sv sk sl sr th tr uk zh hk
+-LANGS = ar bg ca cs da de el en es et fi fr fy hr hu is it lt lv nl no pl pt ru sv sk sl sr th tr uk
++LANGS = ar bg ca cs da de el en es et fi fr fy hk hr hu is it lt lv nl no pl pt ru sv sk sl sr th tr uk zh
  LANGMO = $(LANGS:=.mo)
  LANGPO = $(LANGS:=.po)
  
+@@ -33,7 +33,7 @@
+ 	$(MSGFMT) -o $@ $<
+ 
+ BUILT_SOURCES = $(LANGMO)
+-CLEANFILES = $(LANGMO) enigma2-py.pot enigma2-xml.pot enigma2.pot
++CLEANFILES = $(LANGMO) enigma2-py.pot enigma2-xml.pot
+ 
+ dist-hook: $(LANGPO)
+ 
+@@ -42,6 +42,7 @@
+ 		$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES; \
+ 		$(INSTALL_DATA) $$lang.mo $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES/@PACKAGE_NAME@.mo; \
+ 	done
++	$(INSTALL_DATA) enigma2.pot $(DESTDIR)$(pkgdatadir)/po/enigma2.pot
+ 
+ uninstall-local:
+ 	for lang in $(LANGS); do \

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:42+0800\n"
-"PO-Revision-Date: 2011-11-05 18:26+0700\n"
+"PO-Revision-Date: 2011-11-06 12:24+0700\n"
 "Last-Translator: nx111 <gdzdz@163.com>\n"
 "Language-Team: NEWBOLT\n"
 "Language: \n"
@@ -358,7 +358,7 @@ msgid "About..."
 msgstr "关于..."
 
 msgid "Accesspoint:"
-msgstr ""
+msgstr "存取点:"
 
 msgid "Action:"
 msgstr "功能:"
@@ -596,10 +596,10 @@ msgid "Bitrate:"
 msgstr "比特率:"
 
 msgid "Black screen"
-msgstr ""
+msgstr "黑屏"
 
 msgid "Black screen till locked"
-msgstr ""
+msgstr "锁定前黑屏"
 
 msgid "Block noise reduction"
 msgstr "块降噪"
@@ -632,7 +632,7 @@ msgid "CF Drive"
 msgstr "CF卡"
 
 msgid "CI assignment"
-msgstr ""
+msgstr "CI选择"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -910,7 +910,7 @@ msgid "Creating partition failed"
 msgstr "创建分区失败"
 
 msgid "Current CEC address"
-msgstr ""
+msgstr "当前CEC地址"
 
 msgid "Current Transponder"
 msgstr "当前转发器"
@@ -943,7 +943,7 @@ msgid "DTS downmix"
 msgstr "AC3 缩减混音"
 
 msgid "DUAL LAYER DVD"
-msgstr ""
+msgstr "双层DVD"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -964,7 +964,7 @@ msgid "DVD data format"
 msgstr "DVD数据格式"
 
 msgid "DVD media toolbox"
-msgstr ""
+msgstr "DVD媒体工具箱"
 
 msgid "Date"
 msgstr "日期"
@@ -1015,7 +1015,7 @@ msgid "Deleted items"
 msgstr "已删除项目"
 
 msgid "Depth"
-msgstr ""
+msgstr "深度"
 
 msgid "Description"
 msgstr "描述"
@@ -1024,7 +1024,7 @@ msgid "Deselect"
 msgstr "取消"
 
 msgid "Details for plugin: "
-msgstr ""
+msgstr "插件信息:"
 
 msgid "Detected HDD:"
 msgstr "检测到的硬盘:"
@@ -1258,7 +1258,7 @@ msgid "ERROR - failed to scan (%s)!"
 msgstr "错误 - 扫描 (%s)失败!"
 
 msgid "East"
-msgstr ""
+msgstr "东"
 
 msgid "Edit"
 msgstr "修改"
@@ -1303,7 +1303,7 @@ msgid "Enable 5V for active antenna"
 msgstr "为有源天线启用5V供电"
 
 msgid "Enable Cleanup Wizard?"
-msgstr ""
+msgstr "激活清理向导?"
 
 msgid "Enable parental control"
 msgstr "启用家长控制"
@@ -1503,7 +1503,7 @@ msgid "Format"
 msgstr "格式化"
 
 msgid "Forward volume keys"
-msgstr ""
+msgstr "前向音量键"
 
 msgid "Frame size in full view"
 msgstr "全屏显示时的帧大小"
@@ -1565,10 +1565,10 @@ msgid "Go to first movie"
 msgstr "向上移动到第一个项目"
 
 msgid "Go to last item"
-msgstr ""
+msgstr "前一项目"
 
 msgid "Go to top of list"
-msgstr ""
+msgstr "列表顶端"
 
 msgid "Goto 0"
 msgstr "转到 0"
@@ -1595,13 +1595,13 @@ msgid "HD list"
 msgstr "高清列表"
 
 msgid "Handle deepstandby events"
-msgstr ""
+msgstr "处理深度休眠"
 
 msgid "Handle standby from TV"
 msgstr "管理待机"
 
 msgid "Handle wakeup from TV"
-msgstr ""
+msgstr "处理唤醒"
 
 msgid "Harddisk"
 msgstr "硬盘"
@@ -1637,7 +1637,7 @@ msgid "How many minutes do you want to record?"
 msgstr "您想录制多少分钟?"
 
 msgid "How to handle found crashlogs?"
-msgstr ""
+msgstr "如何处理崩溃日志?"
 
 msgid "Hue"
 msgstr "色相"
@@ -1652,7 +1652,7 @@ msgid "ISO path"
 msgstr "ISO路径"
 
 msgid "Icons"
-msgstr ""
+msgstr "图标"
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -1669,7 +1669,7 @@ msgid ""
 msgstr "如果您的电视机有亮度或对比度增强项，请关闭它。如果里面有标为“动态”的项目，将其设置为标准。调整背光等级的值以符合您的口味。将电视机的对比度尽可能地降低。然后尽可能将亮度设置调低，但请确保最下面的两个灰色能够分辨出来。现在，不必关心亮度的色调，它们将在接下来的步骤中设置。如果您对结果感到满意，按OK 。"
 
 msgid "Image: "
-msgstr ""
+msgstr "映像:"
 
 msgid "In Progress"
 msgstr "进度"
@@ -1766,7 +1766,7 @@ msgid "Is this videomode ok?"
 msgstr "这个模式显示正常?"
 
 msgid "Items per Page "
-msgstr ""
+msgstr "项目每页"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -1847,7 +1847,7 @@ msgstr "存贮设备列表"
 
 #, python-format
 msgid "List version %d, found %d channels"
-msgstr ""
+msgstr "列表版本 %d,发现 %d个频道"
 
 msgid "Load"
 msgstr "加载"
@@ -1919,7 +1919,7 @@ msgid "Menu"
 msgstr "菜单"
 
 msgid "Missing "
-msgstr ""
+msgstr "丢失"
 
 msgid "Mkfs failed"
 msgstr "Mkfs 失败"
@@ -1982,7 +1982,7 @@ msgid "Multiple service support"
 msgstr "多系统支持"
 
 msgid "Multiplex"
-msgstr ""
+msgstr "传输"
 
 msgid "Multisat"
 msgstr "多星"
@@ -1991,7 +1991,7 @@ msgid "N/A"
 msgstr "空"
 
 msgid "NFI Image Flashing"
-msgstr ""
+msgstr "正在刷NFI映像"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
@@ -2057,7 +2057,7 @@ msgid "New"
 msgstr "新建"
 
 msgid "New PIN"
-msgstr ""
+msgstr "新口令"
 
 msgid "New version:"
 msgstr "新版本:"
@@ -2124,10 +2124,10 @@ msgid "No satellite frontend found!!"
 msgstr "没有发现卫星前端"
 
 msgid "No tags are set on these movies."
-msgstr ""
+msgstr "这些影片没有标签"
 
 msgid "No to all"
-msgstr ""
+msgstr "完全不"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "没有配置极轴(DiSEqC 1.2)."
@@ -2158,7 +2158,7 @@ msgstr ""
 "选NO保持当前状态!"
 
 msgid "No wireless networks found! Searching..."
-msgstr ""
+msgstr "没有发现无线网络！正在搜索..."
 
 msgid ""
 "No working local network adapter found.\n"
@@ -2191,7 +2191,7 @@ msgid "No, not now"
 msgstr "不，什么也不做."
 
 msgid "No, send them never"
-msgstr ""
+msgstr "从不发送"
 
 msgid "None"
 msgstr "无"
@@ -2218,7 +2218,7 @@ msgstr ""
 "请设置您的调谐器，然后再启动频道扫描。."
 
 msgid "Nothing to upgrade"
-msgstr ""
+msgstr "没有升级任何东西"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "现在，尽可能使用对比度设置出现的亮度背景，但是请确保您仍然可以看到色调的两个最亮等级之间的不同。如果您已经完成了，按OK。"
@@ -2230,7 +2230,7 @@ msgid "OK, remove another extensions"
 msgstr "OK，移除其他扩展"
 
 msgid "OK, remove some extensions"
-msgstr ""
+msgstr "确定，删除部分扩展"
 
 msgid "ONID"
 msgstr ""
@@ -2245,7 +2245,7 @@ msgid "Off"
 msgstr "关闭"
 
 msgid "Ok"
-msgstr ""
+msgstr "确定"
 
 msgid "On"
 msgstr "打开"
@@ -2541,7 +2541,7 @@ msgid "Preparing... Please wait"
 msgstr "准备中... 请稍候!"
 
 msgid "Press '0' to toggle internal/external PiP."
-msgstr ""
+msgstr "按'0'切换 内/外 画中画."
 
 msgid "Press INFO on your remote control for additional information."
 msgstr "按INFO键查看更多信息."
@@ -2705,7 +2705,7 @@ msgid "Reload Black-/Whitelists"
 msgstr "重载黑/白名单"
 
 msgid "Reloading bouquets and services..."
-msgstr ""
+msgstr "重载自定义组和频道..."
 
 msgid "Remember service PIN"
 msgstr "记住服务密码"
@@ -2768,7 +2768,7 @@ msgid "Repeats"
 msgstr "重复"
 
 msgid "Required medium type:"
-msgstr ""
+msgstr "需要介质类型:"
 
 msgid "Reread partition table"
 msgstr "重新读取分区表"
@@ -2866,7 +2866,7 @@ msgid "SID"
 msgstr "SID"
 
 msgid "SINGLE LAYER DVD"
-msgstr ""
+msgstr "单层DVD"
 
 msgid "SSID:"
 msgstr ""
@@ -2890,7 +2890,7 @@ msgid "Satfinder"
 msgstr "寻星"
 
 msgid "Sats"
-msgstr ""
+msgstr "卫星"
 
 msgid "Saturation"
 msgstr "饱和度"
@@ -2988,7 +2988,7 @@ msgstr "正在扫描%s ..."
 
 #, python-format
 msgid "Scanning completed, %d channels found"
-msgstr ""
+msgstr "扫描完成，找到%d个频道"
 
 msgid "Scanning failed!"
 msgstr "扫描失败!"
@@ -2997,7 +2997,7 @@ msgid "Scanning..."
 msgstr "正在扫描..."
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
-msgstr ""
+msgstr "扫描默认lamedb，以卫星排序"
 
 msgid "Search east"
 msgstr "向东搜索"
@@ -3117,7 +3117,7 @@ msgid "Set available internal memory threshold for the warning."
 msgstr ""
 
 msgid "Set fixed"
-msgstr ""
+msgstr "设为已修复"
 
 msgid "Set interface as default Interface"
 msgstr "将网卡设为默认"
@@ -3214,7 +3214,7 @@ msgid "Skins"
 msgstr "皮肤"
 
 msgid "Skip Empty Services (may need restart)"
-msgstr ""
+msgstr "忽略空频道(可能需要重启)"
 
 msgid "Sleep timer action:"
 msgstr "定时休眠:"
@@ -3312,11 +3312,11 @@ msgstr "待机 / 重启"
 
 #, python-format
 msgid "Standby Fan %d PWM"
-msgstr ""
+msgstr "待机风扇 %d PWM"
 
 #, python-format
 msgid "Standby Fan %d Voltage"
-msgstr ""
+msgstr "待机风扇 %d 伏"
 
 msgid "Start from the beginning"
 msgstr "重头开始"
@@ -3364,10 +3364,10 @@ msgid "Stop test"
 msgstr "停止测试"
 
 msgid "Stop testing plane after # failed transponders"
-msgstr ""
+msgstr "转发器失败后停止测试卫星"
 
 msgid "Stop testing plane after # successful transponders"
-msgstr ""
+msgstr "转发器成功后停止测试卫星"
 
 msgid "Store position"
 msgstr "存贮位置"
@@ -3376,7 +3376,7 @@ msgid "Stored position"
 msgstr "存贮位置"
 
 msgid "Stream request"
-msgstr ""
+msgstr "流请求"
 
 msgid "Subservice list..."
 msgstr "子频道列表..."
@@ -3400,7 +3400,7 @@ msgid "Swap Services"
 msgstr "切换频道"
 
 msgid "Switch TV to correct input"
-msgstr ""
+msgstr "切换电视到正确的输入"
 
 msgid "Switch to next subservice"
 msgstr "切换到下一个子频道"
@@ -3409,7 +3409,7 @@ msgid "Switch to previous subservice"
 msgstr "切换到前一个子频道"
 
 msgid "Switchable tuner types:"
-msgstr ""
+msgstr "可换调谐器类型"
 
 msgid "Symbol Rate"
 msgstr "符号率"
@@ -3440,7 +3440,7 @@ msgid "Table of content for collection"
 msgstr "内容汇编"
 
 msgid "Tags"
-msgstr ""
+msgstr "标签"
 
 msgid "Temperature and Fan control"
 msgstr "温度和风扇控制"
@@ -3527,7 +3527,7 @@ msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
 
 msgid "The package:"
-msgstr ""
+msgstr "软件包:"
 
 #, python-format
 msgid "The path %s already exists."
@@ -3567,7 +3567,7 @@ msgid "The wizard found a configuration backup. Do you want to restore your old 
 msgstr ""
 
 msgid "There are at least "
-msgstr ""
+msgstr "至少"
 
 msgid "There are currently no outstanding actions."
 msgstr ""
@@ -3576,7 +3576,7 @@ msgid "There are no updates available."
 msgstr "没有可用更新."
 
 msgid "There are now "
-msgstr ""
+msgstr "现在"
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -3589,7 +3589,7 @@ msgid "There was an error downloading the packetlist. Please try again."
 msgstr "下载软件包列表出错，请重试."
 
 msgid "There was an error. The package:"
-msgstr ""
+msgstr "遇到错误.软件包:"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "这张DVD RW已经格式化过，再次格式化将删除所有文件"
@@ -3615,7 +3615,7 @@ msgid "This plugin will be installed."
 msgstr "此插件将安装."
 
 msgid "This plugin will be removed."
-msgstr ""
+msgstr "插件被移除"
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -3753,7 +3753,7 @@ msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
 msgid "Top and Bottom"
-msgstr ""
+msgstr "顶端和底部"
 
 msgid "Track"
 msgstr "轨道"
@@ -3771,7 +3771,7 @@ msgid "Transponder Type"
 msgstr "转发器类型"
 
 msgid "Trashcan"
-msgstr ""
+msgstr "垃圾桶"
 
 msgid "Tries left:"
 msgstr "尝试:"
@@ -3846,7 +3846,7 @@ msgid "Undo uninstall"
 msgstr "放弃卸载"
 
 msgid "Unencrypted"
-msgstr ""
+msgstr "未加密"
 
 msgid "Unicable"
 msgstr "通用"
@@ -3873,7 +3873,7 @@ msgid "Unmount failed"
 msgstr "卸载设备失败"
 
 msgid "Unsupported"
-msgstr ""
+msgstr "不支持"
 
 msgid "Update"
 msgstr "更新"
@@ -3966,7 +3966,7 @@ msgid "Username"
 msgstr "用户名"
 
 msgid "Using fixed address"
-msgstr ""
+msgstr "使用固定地址"
 
 msgid "VMGM (intro trailer)"
 msgstr ""
@@ -4197,7 +4197,7 @@ msgid "Yes, returning to movie list"
 msgstr "是，返回电影列表"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "昨天"
 
 msgid "You can cancel the installation."
 msgstr ""
@@ -4394,16 +4394,16 @@ msgid ""
 msgstr "您确定要恢复下面的备份:\n"
 
 msgid "assigned CAIds:"
-msgstr ""
+msgstr "设定CAID:"
 
 msgid "assigned Services/Provider:"
-msgstr ""
+msgstr "设定 频道/提供商"
 
 msgid "at beginning"
 msgstr "开始"
 
 msgid "at end"
-msgstr ""
+msgstr "末尾"
 
 #, python-format
 msgid "audio track (%s) format"
@@ -4614,7 +4614,7 @@ msgid "free diskspace"
 msgstr "剩余磁盘空间"
 
 msgid "full transparency"
-msgstr ""
+msgstr "全透明"
 
 msgid "go to deep standby"
 msgstr "深度休眠"
@@ -4767,7 +4767,7 @@ msgid "no CI slots found"
 msgstr "未找到CI"
 
 msgid "no Services/Providers selected"
-msgstr ""
+msgstr "没有选择频道/提供商"
 
 msgid "no module found"
 msgstr "未找到模块"
@@ -4833,7 +4833,7 @@ msgid "open servicelist(up)"
 msgstr "打开频道列表(上)"
 
 msgid "original"
-msgstr ""
+msgstr "原始"
 
 msgid "pass"
 msgstr "通过"
@@ -4963,7 +4963,7 @@ msgid "select CAId"
 msgstr "选择CAID"
 
 msgid "select CAId's"
-msgstr ""
+msgstr "选择CAID"
 
 msgid "select interface"
 msgstr "选择接口"
@@ -5179,7 +5179,7 @@ msgid "weekly"
 msgstr "每周"
 
 msgid "white"
-msgstr "白名单"
+msgstr "白"
 
 msgid "whitelist"
 msgstr "白名单"
@@ -5332,7 +5332,7 @@ msgid "Allow Subtitle equals Audio mask"
 msgstr "允许字幕与音频掩码相同"
 
 msgid "Allow hearing impaired subtitles"
-msgstr "允许损坏的字幕"
+msgstr "允许有害听力的字幕"
 
 msgid "Alpha"
 msgstr "透明度"
@@ -5524,19 +5524,19 @@ msgid "Position of finished Timers in Timerlist"
 msgstr "计时器列表中计时器结束位置"
 
 msgid "Prefer AC3"
-msgstr "优先采用AC3"
+msgstr "首选AC3"
 
 msgid "Prefer DVB-grafical subtitles"
-msgstr "优先采用DVB记录的字幕"
+msgstr "首选DVB记录的字幕"
 
 msgid "Prefer audio stream stored by service"
 msgstr "频道的音频流优先"
 
 msgid "Prefer hearing impaired subtitles"
-msgstr "损坏的字幕优先"
+msgstr "首选有害听力的字幕"
 
 msgid "Prefer subtitle stored by service"
-msgstr "频道的字幕优先"
+msgstr "首选频道字幕"
 
 msgid "Preferred tuner"
 msgstr "首选调谐器"
@@ -5878,7 +5878,7 @@ msgid "Reception Settings"
 msgstr "接收设置"
 
 msgid "SNR:"
-msgstr "信噪比:"
+msgstr "信噪:"
 
 msgid "Seek"
 msgstr "查找"
@@ -6067,7 +6067,7 @@ msgid "Remove failed."
 msgstr "删除失败."
 
 msgid "Removed successfully."
-msgstr ""
+msgstr "成功移除."
 
 msgid "Select package"
 msgstr "选择包"

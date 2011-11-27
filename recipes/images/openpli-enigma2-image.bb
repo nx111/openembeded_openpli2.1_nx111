@@ -66,6 +66,7 @@ ENIGMA2_OPTIONAL = " \
 				enigma2-plugin-extensions-project-valerie \
 				${@base_contains("MACHINE_FEATURES", "hdtv", \
 					" \
+					enigma2-plugin-skins-Kerni-HD1, \
 					enigma2-plugin-skins-magic-hd \
 					enigma2-plugin-skins-pli-hd \
 					" , "", d)} \

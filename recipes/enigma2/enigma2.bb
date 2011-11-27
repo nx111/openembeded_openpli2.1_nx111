@@ -31,6 +31,7 @@ RDEPENDS_${PN} += "${@base_contains("MACHINE_FEATURES", "blindscan", "virtual/bl
 DEFAULTSKIN = "${@base_contains("MACHINE_FEATURES", "hdtv", \
 					"enigma2-plugin-skins-pli-hd", \
 					"enigma2-plugin-skins-magic", \
+					"enigma2-plugin-skins-Kerni-HD1", \
 					d)}"
 
 # Depend on the defaultskin

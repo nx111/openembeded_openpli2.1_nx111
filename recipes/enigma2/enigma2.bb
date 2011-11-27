@@ -31,7 +31,6 @@ RDEPENDS_${PN} += "${@base_contains("MACHINE_FEATURES", "blindscan", "virtual/bl
 DEFAULTSKIN = "${@base_contains("MACHINE_FEATURES", "hdtv", \
 					"enigma2-plugin-skins-pli-hd", \
 					"enigma2-plugin-skins-magic", \
-					"enigma2-plugin-skins-Kerni-HD1", \
 					d)}"
 
 # Depend on the defaultskin
@@ -91,7 +90,7 @@ inherit gitpkgv
 
 PV = "2.7+git${SRCPV}"
 PKGV = "2.7+git${GITPKGV}"
-PR = "r28"
+PR = "r29"
 
 SRC_URI = "git://openpli.git.sourceforge.net/gitroot/openpli/enigma2;protocol=git"
 # SRC_URI = "git://${HOME}/pli/enigma2;protocol=file"

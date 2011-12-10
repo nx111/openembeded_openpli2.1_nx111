@@ -77,6 +77,7 @@ ENIGMA2_OPTIONAL = " \
 				dvdfs \
 				minidlna \
 				nano \
+				pptp-linux \
 				openvpn \
 				"
 

@@ -25,6 +25,7 @@ IMAGE_INSTALL = " \
 OPTIONAL_PACKAGES ?= ""
 OPTIONAL_PACKAGES += " \
 			openvpn \
+			pptp-linux \
 			gdb strace \
 			procps \
 			tcpdump \

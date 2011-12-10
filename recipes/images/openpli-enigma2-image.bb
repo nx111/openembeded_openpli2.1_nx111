@@ -77,6 +77,7 @@ ENIGMA2_OPTIONAL = " \
 				dvdfs \
 				minidlna \
 				nano \
+				openvpn \
 				"
 
 IMAGE_INSTALL += " \

@@ -49,7 +49,8 @@ ENIGMA2_PLUGINS = " \
 				${@base_contains("MACHINE_FEATURES", "wifi", "enigma2-plugin-systemplugins-wirelesslan", "", d)} \
 				"
 
-DEPENDS += "enigma2 enigma2-plugins enigma2-pliplugins"
+DEPENDS += "enigma2 enigma2-plugins enigma2-pliplugins "
+DEPENDS += "pptp-linux openvpn"
 
 ENIGMA2_OPTIONAL = " \
 				enigma2-skins \
@@ -77,8 +78,6 @@ ENIGMA2_OPTIONAL = " \
 				dvdfs \
 				minidlna \
 				nano \
-				pptp-linux \
-				openvpn \
 				"
 
 IMAGE_INSTALL += " \
@@ -90,6 +89,8 @@ IMAGE_INSTALL += " \
 				libavahi-client \
 				settings-autorestore \
 				${@base_contains("MACHINE_FEATURES", "wifi", "${WIFI_DRIVERS}", "", d)} \
+				pptp-linux \
+				openvpn \
 				"
 
 OPTIONAL_PACKAGES += " \

@@ -10042,14 +10042,14 @@ diff -Naur git.orig/lib/python/Components/Language.py git/lib/python/Components/
  		self.addLanguage("Български", "bg", "BG")
 diff -Naur git.orig/lib/python/Components/MovieList.py git/lib/python/Components/MovieList.py
 --- git.orig/lib/python/Components/MovieList.py	2012-01-01 09:23:10.000000000 +0800
-+++ git/lib/python/Components/MovieList.py	2012-01-03 17:28:37.026431265 +0800
++++ git/lib/python/Components/MovieList.py	2012-01-05 18:07:08.769840339 +0800
 @@ -495,6 +495,11 @@
  			info = serviceHandler.info(serviceref)
  			if info is None:
  				info = justStubInfo 
 +
 +			name = os.path.basename(info.getName(serviceref).rstrip('/'))
-+			if len(name)>1 and name[0] == '.' and config.ParentalControl.servicepinactive.value:
++			if len(name)>1 and name[0] == '.' and name[1] != '.' and config.ParentalControl.servicepinactive.value:
 +				continue
 +
  			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
